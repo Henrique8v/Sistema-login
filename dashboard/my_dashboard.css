@@ -1,0 +1,75 @@
+/* ESTILO CIBERNÉTICO POSITIVISTA - CORE */
+body { 
+    background: #000; 
+    color: #ccc; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0; 
+    padding: 20px; 
+}
+
+.panel { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    background: linear-gradient(145deg, #050505, #0a0a0a); 
+    border: 1px solid #1a1a1a; 
+    border-left: 5px solid green; 
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    will-change: transform;
+}
+
+/* Grid do Hub */
+.hub-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    margin-top: 20px; 
+}
+
+.card-service { 
+    background: #080808; 
+    border: 1px solid #111; 
+    padding: 20px; 
+    border-radius: 8px; 
+}
+
+/* Botões Estilo Cyber */
+.btn-cyber {
+    background: transparent;
+    border: 2px solid #072c33;
+    color: #6e7d80;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    touch-action: pan-y;
+}
+
+.btn-cyber:hover {
+    background: rgba(0, 191, 255, 0.1);  
+    color: white;
+    border-color: #00BFFF;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+.btn-nav { margin-bottom: 10px; }
+
+/* Destaque Ouro para Core Services */
+.gold-btn { border-color: #FFD700 !important; color: #FFD700 !important; }
+.gold-btn:hover { background: #FFD700 !important; color: #000 !important; box-shadow: 0 0 15px #FFD700; }
+
+/* Grid e Terminais */
+.grid-terms { display: flex; gap: 15px; margin-top: 20px; }
+.term-container { width: 50%; position: relative; }
+.term-box {
+    height: 250px; background: #000; color: #0F0; padding: 10px;
+    font-family: 'Courier New', monospace; font-size: 11px;
+    border: 1px solid #111; overflow-y: auto; white-space: pre-wrap;
+    will-change: transform; touch-action: pan-y; 
+}

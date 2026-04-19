@@ -1,0 +1,59 @@
+Baixar o Node.js® x64 LTS 24.14.1.msi e instalar
+não marcar a opção de "Automatically install the necessary tools", pois essa caixa de seleção refere-se às "Tools for Native Modules" (Ferramentas para Módulos Nativos). Ela instalaria automaticamente o Python e as Visual Studio Build Tools via Chocolatey. Como você já possui um ambiente robusto com Python 3.13 e o compilador MinGW (g++) configurados para o seu projeto, não há necessidade dessa instalação adicional, que ocuparia gigabytes de espaço desnecessariamente.
+
+O Instalador e a Instalação Base
+Arquivo .msi (Download): Aproximadamente 30 MB a 40 MB.
+Espaço em Disco (Instalado): Cerca de 60 MB a 100 MB no seu C:\Program Files\nodejs.
+Isso inclui o executável node.exe, o gerenciador npm e as definições básicas do sistema.
+
+Cheque se está com path: 
+Bash____________________________________________________________________________
+
+node -v
+________________________________________________________________________________
+Usando o Electron com Webview Chromium:
+
+Use a pasta (ex: C:\xampp\htdocs\Sistema-login\coreview\core_electron) e abra o terminal (CMD ou PowerShell) nela:
+
+Bash____________________________________________________________________________
+
+# Inicia o projeto node
+npm init -y
+
+# Instala o Electron como dependência de desenvolvimento
+npm install electron --save-dev
+________________________________________________________________________________
+
+Nota: o aviso de "deprecated" (descontinuado) no pacote boolean é comum no ecossistema Node.js e não afeta em nada o funcionamento do seu projeto; é apenas um alerta interno de uma das sub-dependências do Electron.
+
+Powershell______________________________________________________________________
+
+PS C:\xampp\htdocs\Sistema-login\core_electron> npm install electron --save-dev
+npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+added 70 packages, and audited 71 packages in 49s
+
+17 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+________________________________________________________________________________
+
+Após rodar o comando acima, você notará uma pasta chamada node_modules.
+O executável do Electron (o Chromium + Node) fica em: node_modules\electron\dist\electron.exe.
+Você não precisa mexer nesses arquivos manualmente; o comando npx electron . cuida de abrir tudo para você.
+
+Na pasta coreview
+
+   . compilar_korvado.py: responsavel por abrir a interface
+   . gerar_binario.py: responsavel por criar o executavel atraves do dashboard
+   . nota: pip install pyinstaller
+
+Na pasta core_electron
+
+   . main.js
+   . package.json
+
+Agora, sempre que você estiver na pasta core_electron pelo terminal e digitar npm start, a janela do seu sistema deve subir instantaneamente com suporte total a PDO, Sessões e CSS3, resolvendo de vez o problema que tivemos com o Sciter. 
+
+Se o seu my_dashboard.php chamar o compilar_korvado.py, e este script der o comando npm start dentro desta pasta, o ciclo de forja estará completo!

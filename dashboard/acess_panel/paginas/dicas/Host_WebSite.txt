@@ -1,0 +1,3 @@
+Use o Netfly para redirecionar um dominio ao seu repositorio no git com seus arquivos do site
+Use o drive, Dropbox e Mediafire para exibir e acessar alguns arquivos.
+Use um free dominio no googiehost (opcional)

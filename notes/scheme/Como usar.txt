@@ -1,0 +1,11 @@
+COMO USAR - GUIA RÁPIDO
+===========================================================================
+1. INÍCIO: Abra o XAMPP e inicie Apache e MySQL.
+2. ACESSO: Navegue até 'localhost/Sistema-login/acess_panel.htm'.
+3. ATIVAÇÃO: Clique em 'Pinggy Panel' e selecione 'Ligar Rastros'. 
+   (Verifique se o status mudou para ONLINE no monitor).
+4. INTERAÇÃO: Use o botão 'Acessar Perfil' para entrar na rede social.
+5. MANUTENÇÃO: No 'My Dashboard', use o 'Deep Analysis' após grandes
+   volumes de postagens para garantir que os logs não excedam 5MB.
+6. BUSCA: Use a barra no topo para encontrar outros membros da ordem.
+===========================================================================

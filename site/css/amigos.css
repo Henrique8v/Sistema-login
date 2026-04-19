@@ -1,0 +1,122 @@
+/* Sistema-login/style/amigos.css  */
+
+.btn-acao { 
+    padding: 10px 20px; 
+    text-decoration: none !important; 
+    border-radius: 4px; 
+    font-weight: bold; 
+    font-size: 13px; 
+    border: none; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    display: inline-block; 
+    width: 100%; 
+    text-align: center; 
+    box-sizing: border-box; 
+    color: white;
+	will-change: transform;
+}
+
+.btn-acao:hover { 
+    filter: brightness(1.2); 
+    transform: scale(1.02); 
+}
+
+.circulo-amigos { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    gap: 20px; 
+    padding: 20px; 
+    flex-direction: row;
+    align-items: center;
+	will-change: transform;
+}
+
+.card-amigo { 
+    text-align: center; 
+    background: rgba(0,0,0,0.5); 
+    padding: 15px; 
+    border-radius: 8px; 
+    border: 1px solid #333; 
+    transition: 0.3s;
+    will-change: transform;	
+    
+}
+
+.card-amigo:hover { 
+    border-color: #F91313; 
+    transform: translateY(-5px); 
+}
+
+.card-amigo img { 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;
+    object-fit: cover; 
+    border: 2px solid #ff6a61; 
+	display: flex;
+	will-change: transform;
+	margin: 0 0 0 20;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    will-change: transform;	
+}
+
+/* Botões de Ação Específicos */
+.btn-exilar, .btn-recusar { 
+    background: none; 
+    border: 1px solid #ff4d4d; 
+    color: #ff4d4d; 
+    padding: 5px 10px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 11px; 
+    margin-top: 10px;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: bold;
+    transition: 0.3s;
+	will-change: transform;
+}
+
+.btn-exilar:hover, .btn-recusar:hover, .btn-aceitar:hover, .card-amigo:hover img {
+	border-color: #F91313; 
+    transform: translateY(-1px);
+	background: #e65449;
+	color: #f7d7d5;
+}
+
+.btn-aceitar { 
+    background: #28a745; 
+    color: white; 
+    border: none; 
+    padding: 8px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 10px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-weight: bold; 
+    width: 100%; 
+	will-change: transform;
+}
+
+/* Efeito de Notificação Pulsante */
+@keyframes pulsar {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.ponto-alerta {
+    color: #F91313;
+    animation: pulsar 1.5s infinite;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.fade-out { 
+    opacity: 0; 
+    transform: scale(0.9); 
+    transition: 0.5s; 
+}

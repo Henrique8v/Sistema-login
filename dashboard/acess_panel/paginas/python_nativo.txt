@@ -1,0 +1,332 @@
+INSTALE E USE
+
+Se instalou o python nativo e deu path, você deve instalar pacotes e fazer upgrades atraves do cmd sem abrir o python no terminal:
+
+modo mais garantido: python -m ensurepip --upgrade (instala o pip)
+modo mais garantido: python -m pip install nome_da_biblioteca
+sem o prefixo do modulo: pip install flask pywin32 vgamepad flask-cors
+
+Se quiser usar o python é so digitar e iniciar com cmd bash: python
+Você pode rodar scripts com cmd bash: python nome_do_script.py
+___________________________________________________________________________________________________
+O PIPENV
+
+O Pipenv e o venv criam ambientes virtuais isolados para projetos Python, evitando conflitos de bibliotecas. Use pipenv (mais moderno) para gerenciamento automático de dependências (Pipfile) e venv (nativamente integrado) para projetos mais simples. 
+
+Exemplo: python -m venv bla-bla-bla
+
+1. Pipenv (Recomendado)
+O Pipenv une pip e virtualenv em uma única ferramenta. 
+
+Instalação: pip install pipenv
+Criar e Ativar: pipenv shell (executar dentro da pasta do projeto)
+Instalar pacotes: pipenv install <nome_do_pacote>
+Instalar dependências do Pipfile: pipenv install
+Sair: exit 
+
+2. venv (Nativo do Python) 
+O venv é incluído no Python e cria uma pasta local para o ambiente. 
+
+Criar: python -m venv venv (ou python -m venv .venv)
+Ativar (Windows): .\venv\Scripts\activate
+Ativar (Linux/macOS): source venv/bin/activate
+Instalar pacotes: pip install <nome_do_pacote>
+Desativar: deactivate 
+
+Resumo das Diferenças:
+
+Característica 	Pipenv	venv
+Gerenciamento	Automático (Pipfile)	Manual (requirements.txt)
+Ativação	pipenv shell	source/activate
+Uso principal	Projetos complexos	Projetos simples/scripts
+___________________________________________________________________________________________
+
+INSTALANDO PACOTES  
+
+Esta seção aborda os conceitos básicos de como instalar pacotes Python .
+
+É importante notar que o termo "pacote" neste contexto está sendo usado para descrever um conjunto de softwares a serem instalados (ou seja, como sinônimo de distribuição ). Não se refere ao tipo de pacote que você importa no seu código-fonte Python (ou seja, um contêiner de módulos). É comum na comunidade Python se referir a uma distribuição usando o termo "pacote". O uso do termo "distribuição" geralmente não é o preferido, pois pode ser facilmente confundido com uma distribuição Linux ou outra distribuição de software maior, como o próprio Python.
+
+Requisitos para a instalação de pacotes 
+
+Esta seção descreve os passos a seguir antes de instalar outros pacotes Python.
+
+Certifique-se de que consegue executar o Python a partir da linha de comando 
+Antes de prosseguir, certifique-se de ter o Python instalado e de que a versão esperada esteja disponível na sua linha de comando. Você pode verificar isso executando o seguinte comando:
+
+Unix/macOS
+python3 --version
+
+Windows
+Você deverá obter uma saída semelhante a esta . Caso não tenha o Python instalado, instale a versão 3.x mais recente em python.org ou consulte a seção "Instalando o Python " do Guia do Mochileiro do Python.Python 3.6.3
+
+Observação: Se você é um usuário novo e se depara com um erro como este:
+
+python3 --version
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'python3' is not defined
+
+Isso ocorre porque este comando e outros comandos sugeridos neste tutorial destinam-se a ser executados em um shell (também chamado de terminal ou console ). Consulte o tutorial "Python para Iniciantes " para obter uma introdução ao uso do shell do seu sistema operacional e à interação com o Python.
+
+Observação: Se você estiver usando um shell aprimorado como o IPython ou o Jupyter Notebook, poderá executar comandos do sistema como os deste tutorial, precedendo-os com um !caractere:
+
+In [1]: import sys
+        !{sys.executable} --version
+Python 3.6.3
+
+É recomendável escrever `python` {sys.executable}em vez de `python` simples pythonpara garantir que os comandos sejam executados na instalação do Python correspondente ao notebook em execução (que pode não ser a mesma instalação do Python à qual o pythoncomando se refere).
+
+Observação: Devido à forma como a maioria das distribuições Linux lida com a migração para o Python 3, os usuários do Linux que utilizam o Python do sistema sem criar um ambiente virtual previamente devem substituir o pythoncomando neste tutorial por `python3` python3e o comando `python4` por `python3` . Não execute nenhum dos comandos neste tutorial com `sudo` : se você receber um erro de permissões, volte à seção sobre criação de ambientes virtuais, configure um e continue com o tutorial conforme descrito.python -m pippython3 -m pip --usersudo
+
+Certifique-se de que consegue executar o pip a partir da linha de comando 
+Além disso, você precisará garantir que o pip esteja disponível. Você pode verificar isso executando o seguinte comando:
+
+Unix/macOS
+python3 -m pip --version
+
+Windows
+Se você instalou o Python a partir do código-fonte, com um instalador do python.org ou via Homebrew , você já deve ter o pip. Se você estiver usando Linux e o instalou com o gerenciador de pacotes do seu sistema operacional, talvez seja necessário instalar o pip separadamente. Veja Instalando pip/setuptools/wheel com gerenciadores de pacotes do Linux .
+
+Se pip ainda não estiver instalado, tente primeiro inicializá-lo a partir da biblioteca padrão:
+
+Unix/macOS
+python3 -m ensurepip --default-pip
+
+Windows
+Se isso ainda não permitir que você execute o programa :python -m pip
+
+Faça o download seguro de get-pip.py [ 1 ]
+
+Execute . [ 2 ] Isso instalará ou atualizará o pip. Além disso, instalará o Setuptools e o wheel se ainda não estiverem instalados.python get-pip.py
+
+Aviso
+
+Tenha cuidado se estiver usando uma instalação do Python gerenciada pelo seu sistema operacional ou outro gerenciador de pacotes. O get-pip.py não é compatível com essas ferramentas e pode deixar seu sistema em um estado inconsistente. Você pode usar o pip para instalar o pip, que é projetado para softwares instalados localmente.python get-pip.py --prefix=/usr/local//usr/local
+
+Certifique-se de que o pip, o setuptools e o wheel estejam atualizados 
+Embora pipa instalação a partir de arquivos binários pré-compilados seja suficiente, cópias atualizadas dos projetos `package.json` setuptoolse `package.json` wheelsão úteis para garantir que você também possa instalar a partir de arquivos de código-fonte:
+
+Unix/macOS
+python3 -m pip install --upgrade pip setuptools wheel
+
+Windows
+Opcionalmente, crie um ambiente virtual 
+Consulte a seção abaixo para obter detalhes, mas aqui está o comando venv [ 3 ] básico para usar em um sistema Linux típico:
+
+Unix/macOS
+python3 -m venv tutorial_env
+source tutorial_env/bin/activate
+
+Windows
+Isso criará um novo ambiente virtual no tutorial_envsubdiretório e configurará o shell atual para usá-lo como pythonambiente padrão.
+
+Criação de Ambientes Virtuais 
+Os "ambientes virtuais" do Python permitem que pacotes do Python sejam instalados em um local isolado para uma aplicação específica, em vez de serem instalados globalmente. Se você deseja instalar ferramentas de linha de comando globais com segurança, consulte Instalando ferramentas de linha de comando independentes .
+
+Imagine que você tenha um aplicativo que precisa da versão 1 do LibFoo, mas outro aplicativo requer a versão 2. Como você pode usar ambos os aplicativos? Se você instalar tudo em /usr/lib/python3.6/site-packages (ou qualquer que seja o local padrão da sua plataforma), é fácil acabar em uma situação em que você atualiza inadvertidamente um aplicativo que não deveria ser atualizado.
+
+Ou, de forma mais geral, o que acontece se você quiser instalar um aplicativo e deixá-lo funcionando normalmente? Se um aplicativo funciona, qualquer alteração em suas bibliotecas ou nas versões dessas bibliotecas pode quebrar o aplicativo.
+
+Além disso, o que acontece se não for possível instalar pacotes no diretório global site-packages? Por exemplo, em uma hospedagem compartilhada.
+
+Em todos esses casos, os ambientes virtuais podem ajudar. Eles possuem seus próprios diretórios de instalação e não compartilham bibliotecas com outros ambientes virtuais.
+
+Atualmente, existem duas ferramentas comuns para criar ambientes virtuais em Python:
+
+O venv está disponível por padrão no Python 3.3 e versões posteriores e instala o pip em ambientes virtuais criados no Python 3.4 e versões posteriores (versões do Python anteriores à 3.12 também instalavam o Setuptools ).
+
+O virtualenv precisa ser instalado separadamente, mas é compatível com Python 2.7+ e Python 3.3+, e o pip , o Setuptools e o wheel são instalados por padrão nos ambientes virtuais criados. Observe que o pipsetuptoolsnão é mais incluído por padrão a partir do Python 3.12 (evirtualenvsegue esse comportamento).
+
+O uso básico é o seguinte:
+
+Usando venv :
+
+Unix/macOS
+python3 -m venv <DIR>
+source <DIR>/bin/activate
+
+Windows
+Utilizando ambiente virtual :
+
+Unix/macOS
+python3 -m virtualenv <DIR>
+source <DIR>/bin/activate
+
+Windows
+Para obter mais informações, consulte a documentação do venv ou a documentação do virtualenv .
+
+O uso do comando `source` em shells Unix garante que as variáveis ​​do ambiente virtual sejam definidas dentro do shell atual, e não em um subprocesso (que então desaparece, não tendo nenhum efeito útil).
+
+Em ambos os casos acima, os usuários do Windows não devem usar o comando `source` , mas sim executar o script de ativação diretamente do prompt de comando, da seguinte forma:
+
+<DIR>\Scripts\activate
+Gerenciar vários ambientes virtuais diretamente pode se tornar tedioso, então o tutorial de gerenciamento de dependências apresenta uma ferramenta de nível superior, o Pipenv , que gerencia automaticamente um ambiente virtual separado para cada projeto e aplicativo em que você trabalha.
+
+Use o pip para instalar 
+O pip é o instalador recomendado. Abaixo, abordaremos os cenários de uso mais comuns. Para obter mais detalhes, consulte a documentação do pip , que inclui um Guia de Referência completo .
+
+Instalando a partir do PyPI 
+O uso mais comum do pip é instalar pacotes a partir do Índice de Pacotes Python (PyPI) usando um especificador de requisitos . De modo geral, um especificador de requisitos é composto por um nome de projeto seguido por um especificador de versão opcional . Uma descrição completa dos especificadores suportados pode ser encontrada na especificação de especificadores de versão . Abaixo estão alguns exemplos.
+
+Para instalar a versão mais recente do “SomeProject”:
+
+Unix/macOS
+python3 -m pip install "SomeProject"
+
+Windows
+Para instalar uma versão específica:
+
+Unix/macOS
+python3 -m pip install "SomeProject==1.4"
+
+Windows
+Para instalar uma versão igual ou superior a uma e inferior a outra:
+
+
+Unix/macOS
+python3 -m pip install "SomeProject>=1,<2"
+
+Windows
+Para instalar uma versão compatível com uma determinada versão: [ 4 ]
+
+
+Unix/macOS
+python3 -m pip install "SomeProject~=1.4.2"
+
+Windows
+Neste caso, isso significa instalar qualquer versão “==1.4.*” que também seja “>=1.4.2”.
+
+Distribuições de origem vs. rodas 
+O pip pode instalar a partir de distribuições de código-fonte (sdist) ou de pacotes wheel , mas se ambos estiverem presentes no PyPI, o pip dará preferência a um pacote wheel compatível . Você pode sobrescrever o comportamento padrão do pip, por exemplo, usando a opção `--no-binary` .
+
+Os wheels são um formato de distribuição pré-compiladoque proporciona uma instalação mais rápida em comparação com as distribuições de código-fonte (sdist) , especialmente quando um projeto contém extensões compiladas.
+
+Se o pip não encontrar um pacote wheel para instalar, ele criará um pacote wheel localmente e o armazenará em cache para instalações futuras, em vez de recompilar a distribuição de origem posteriormente.
+
+Atualização de pacotes 
+Atualize uma versão já instalada SomeProjectpara a versão mais recente disponível no PyPI.
+
+
+Unix/macOS
+python3 -m pip install --upgrade SomeProject
+
+Windows
+Instalação no site do usuário 
+Para instalar pacotes que sejam específicos para o usuário atual, use a --userflag:
+
+
+Unix/macOS
+python3 -m pip install --user SomeProject
+
+Windows
+Para obter mais informações, consulte a seção "Instalações do usuário" na documentação do pip.
+
+Note que o --userparâmetro não tem efeito quando se está dentro de um ambiente virtual - todos os comandos de instalação afetarão o ambiente virtual.
+
+Se SomeProjectdefinir quaisquer scripts de linha de comando ou pontos de entrada de console, --usereles serão instalados dentro do diretório binário da base de usuários , que pode ou não já estar presente no seu shell.PATH(A partir da versão 10, o pip exibe um aviso ao instalar qualquer script em um diretório fora do sistema.)PATHSe os scripts não estiverem disponíveis no seu shell após a instalação, você precisará adicionar o diretório ao seu PATH.PATH:
+
+No Linux e macOS, você pode encontrar o diretório binário base do usuário executando o comando `ls -l` e adicionando `/ usr/local /bin` ao final. Por exemplo, isso normalmente imprimirá `/usr/local/bin` (com ` /usr/local/bin` expandido para o caminho absoluto do seu diretório home), então você precisará adicionar `/usr/local/bin` ao seu ` ~/.profile`. Você pode definir seu `/usr / local/bin` permanentemente modificando o arquivo `~/.profile` .python -m site --user-basebin~/.local~~/.local/binPATHPATH
+
+No Windows, você pode encontrar o diretório binário base do usuário executando o comando `lsblk` e substituindo `<nome_do_diretório>` por ` <nome_do_diretório >`. Por exemplo, isso pode retornar `<nome_do_diretório>` , então você precisaria configurar seu PATH para incluir `< nome_do_diretório >`. Você pode definir seu usuário permanentemente no Painel de Controle . Talvez seja necessário sair da sua conta para que as alterações entrem em vigor.py -m site --user-sitesite-packagesScriptsC:\Users\Username\AppData\Roaming\Python36\site-packagesPATHC:\Users\Username\AppData\Roaming\Python36\ScriptsPATHPATH
+
+Arquivos de requisitos 
+Instale uma lista de requisitos especificados em um arquivo de requisitos .
+
+
+Unix/macOS
+python3 -m pip install -r requirements.txt
+
+Windows
+Instalando a partir do VCS 
+Instale um projeto do VCS no modo "editável". Para obter uma descrição completa da sintaxe, consulte a seção do pip sobre suporte a VCS .
+
+
+Unix/macOS
+python3 -m pip install -e SomeProject @ git+https://git.repo/some_pkg.git          # from git
+python3 -m pip install -e SomeProject @ hg+https://hg.repo/some_pkg                # from mercurial
+python3 -m pip install -e SomeProject @ svn+svn://svn.repo/some_pkg/trunk/         # from svn
+python3 -m pip install -e SomeProject @ git+https://git.repo/some_pkg.git@feature  # from a branch
+
+Windows
+Instalando a partir de outros índices 
+Instalar a partir de um índice alternativo
+
+
+Unix/macOS
+python3 -m pip install --index-url http://my.package.repo/simple/ SomeProject
+
+Windows
+Pesquise um índice adicional durante a instalação, além do PyPI.
+
+
+Unix/macOS
+python3 -m pip install --extra-index-url http://my.package.repo/simple SomeProject
+
+Windows
+Instalando a partir de uma árvore de origem local 
+Instalando a partir do diretório src local em Modo de Desenvolvimento , ou seja, de forma que o projeto pareça estar instalado, mas ainda seja editável a partir da árvore src.
+
+
+Unix/macOS
+python3 -m pip install -e <path>
+
+Windows
+Você também pode instalar normalmente a partir do código-fonte.
+
+
+Unix/macOS
+python3 -m pip install <path>
+
+Windows
+Instalando a partir de arquivos locais 
+Instale um arquivo de origem específico.
+
+
+Unix/macOS
+python3 -m pip install ./downloads/SomeProject-1.0.4.tar.gz
+
+Windows
+Instale a partir de um diretório local que contenha os arquivos (e não verifique o PyPI ).
+
+
+Unix/macOS
+python3 -m pip install --no-index --find-links=file:///local/dir/ SomeProject
+python3 -m pip install --no-index --find-links=/local/dir/ SomeProject
+python3 -m pip install --no-index --find-links=relative/dir/ SomeProject
+
+Windows
+Instalando a partir de outras fontes 
+Para instalar a partir de outras fontes de dados (por exemplo, armazenamento Amazon S3), você pode criar um aplicativo auxiliar que apresente os dados em um formato compatível com a API de repositório simples e usar a --extra-index-urlflag para direcionar o pip a usar esse índice.
+
+./s3helper --port=7777
+python -m pip install --extra-index-url http://localhost:7777 SomeProject
+Instalando versões prévias 
+Encontre versões de pré-lançamento e de desenvolvimento, além das versões estáveis. Por padrão, o pip encontra apenas versões estáveis.
+
+
+Unix/macOS
+python3 -m pip install --pre SomeProject
+
+Windows
+Instalando “Extras” 
+Os extras são "variantes" opcionais de um pacote, que podem incluir dependências adicionais e, assim, habilitar funcionalidades extras do pacote. Se você deseja instalar um extra para um pacote que você sabe que publica um, você pode incluí-lo no comando de instalação do pip:
+
+
+Unix/macOS
+python3 -m pip install 'SomePackage[PDF]'
+python3 -m pip install 'SomePackage[PDF]==3.0'
+python3 -m pip install -e '.[PDF]'  # editable project in current directory
+
+Windows
+[ 1 ]
+"Seguro", neste contexto, significa usar um navegador moderno ou uma ferramenta como o curl , que verifica certificados SSL ao baixar arquivos de URLs https.
+
+[ 2 ]
+Dependendo da sua plataforma, isso pode exigir acesso root ou de administrador. O pip está considerando alterar isso, tornando as instalações pelo usuário o comportamento padrão .
+
+[ 3 ]
+A partir do Python 3.4, o `virtualenv` venv(uma alternativa da biblioteca padrão ao `virtualenv` ) criará ambientes `virtualenv` com o ` pipvirtualenv` pré-instalado, tornando-se assim uma alternativa equivalente ao `virtualenv` .
+
+[ 4 ]
+O especificador de versão compatível foi aceito emA PEP 440 e o suporte a ela foram lançados no Setuptools v8.0 e no pip v6.0.

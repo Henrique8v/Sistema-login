@@ -1,0 +1,57 @@
+#modalEdit { 
+     display: none; 
+     position: fixed; 
+	 z-index: 11000; 
+	 left: 0; 
+	 top: 0; width: 100%; height: 100%; 
+	 background: rgba(0,0,0,0.9); 
+	 }
+.edit-box { 
+     background: #0d0d0d; 
+     margin: 5% auto; 
+	 width: 90%; max-width: 850px; 
+	 display: flex; 
+	 border: 1px solid #F91313; 
+	 border-radius: 8px; 
+	 height: 500px; 
+	 overflow: hidden; 
+	 }
+.edit-left { 
+     width: 50%; 
+     background: #000; 
+	 display: flex; 
+	 align-items: center; 
+	 justify-content: center; 
+	 border-right: 1px solid #222; }
+.edit-right { 
+     width: 50%; 
+	 padding: 30px; 
+	 display: flex; 
+	 flex-direction: column; }
+.grid-feed { 
+     display: grid; 
+	 grid-template-columns: repeat(3, 1fr); 
+	 gap: 10px; margin-top: 30px; }
+.post-card { 
+     aspect-ratio: 1/1; 
+	 position: relative; 
+	 border: 1px solid #222; 
+	 overflow: hidden; 
+	 border-radius: 4px; 
+	 cursor: pointer; }
+.btn-controls { 
+     position: absolute; 
+	 top: 5px; right: 5px; 
+	 display: flex; 
+	 gap: 4px; z-index: 10; 
+	 opacity: 0; transition: 0.3s; }
+.post-card:hover .btn-controls { 
+     opacity: 1; }
+.btn-mini { 
+     background: rgba(0,0,0,0.85); 
+	 color: white; border: 1px solid #444; 
+	 padding: 4px 8px; 
+	 border-radius: 3px; 
+	 font-size: 10px; 
+	 cursor: pointer; 
+	 text-decoration: none; }

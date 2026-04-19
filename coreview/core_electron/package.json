@@ -1,0 +1,12 @@
+{
+  "name": "estacao-korvado",
+  "version": "1.0.0",
+  "description": "Estação de Acesso Nativa do RV Project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^30.0.0"
+  }
+}

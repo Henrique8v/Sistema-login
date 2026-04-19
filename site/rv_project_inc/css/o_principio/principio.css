@@ -1,0 +1,35 @@
+/* principio.css */         
+		 
+/* Efeitos de Imagens */
+.pulse {
+    animation: pulse 0.7s infinite alternate;
+    margin: 50px auto 0 auto;
+    display: block;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); filter: brightness(100%); }
+    100% { transform: scale(1.05); filter: brightness(130%); } /* Brilho da imagem suavizado */
+}
+
+/* Ajustes de Responsividade */
+@media (max-width: 800px) {
+  
+    iframe {
+        height: 350px !important;
+    }
+
+    .pulse {
+        max-width: 90%;
+    }
+}
+
+/* Estilo para a "Essência Cinza" */
+.essencia-cinza {
+    background-color: #666666;
+    color: #eeeeee;
+    padding: 2px 6px;
+    font-style: italic;
+    border-radius: 4px;
+}
+

@@ -1,0 +1,130 @@
+/* MODAL UNIVERSAL KORVADO */
+#btn-like:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}
+.btn-acao-modal {
+    background-color: #F91313; /* Vermelho Padrão Korvado */
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: 'Cinzel', serif; /* Mantendo a identidade da marca */
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 95%; /* Ocupa a largura total abaixo do textarea */
+    text-transform: uppercase;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-acao-modal:hover {
+    background-color: #D10A0A; /* Tom levemente mais escuro no hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(249, 19, 19, 0.2);
+}
+
+.comment-item, .modal-post-container {
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+#modal-post {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: var(--bg-container);
+	background: transparent;
+	color: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-post-container {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh;
+    background: var(--bg-container);
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+	color: inherit;
+	overflow: scroll;
+}
+
+/* Lado Esquerdo: Mídia */
+.modal-post-media {
+    flex: 1.5;
+    background: var(--bg-container);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #222;
+}
+.modal-post-media img, .modal-post-media video {
+    max-width: 100%; max-height: 100%;
+}
+
+/* Lado Direito: Social */
+.modal-post-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+}
+
+.modal-post-header {
+    padding: 15px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.modal-post-header img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #F91313; }
+
+.modal-post-comments {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: var(--bg-container);
+}
+.comment-item { margin-bottom: 15px; font-size: 13px; }
+.comment-item b { color: #F91313; }
+
+.modal-post-footer {
+    padding: 15px;
+    border-top: 1px solid #222;
+}
+.modal-post-footer textarea {
+    width: 100%; max-width: 95%; background: var(--bg-container); border: 1px solid #333; color: inherit;
+    padding: 8px; border-radius: 4px; resize: none; font-size: 13px;
+}
+
+/* Para telas de celulares e tablets (até 800px) */
+@media (max-width: 800px) {
+    .modal-post-container {
+        flex-direction: column; /* Empilha o vídeo/imagem acima do texto */
+        height: 95vh; /* Aumenta a altura no celular para caber tudo */
+        max-width: 95%; /* Ocupa quase toda a largura da tela mobile */
+    }
+
+    .modal-post-media {
+        flex: none; /* Desativa a proporção de crescimento */
+        width: 100%; /* Força a imagem a ocupar a largura total no topo */
+        height: 50%; /* Define que a mídia ocupa metade da altura do modal */
+        border-right: none; /* Remove a borda lateral */
+        border-bottom: 1px solid #222; /* Adiciona borda embaixo da mídia */
+    }
+
+    .modal-post-info {
+        flex: 1; /* Ocupa o restante do espaço abaixo */
+        width: 100%;
+        min-width: unset; /* Remove a restrição de largura mínima */
+    }
+}

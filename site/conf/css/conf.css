@@ -1,0 +1,117 @@
+/* site/conf/css/conf.css */
+
+/* Cor padrão (Escuro - RV Project) */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0b0e11; /* Preto puro */
+    color: white;
+    transition: background-color 0.3s ease;
+    font-family: 'Motiva Sans', Sans-serif;
+}
+
+/* Quando o Modo Claro estiver ativo (Cinza/Branco) */
+body.claro-mode, body.modo-claro {
+    background-color: #dcdcdc !important; /* Cinza claro, não azulado */
+    color: #1a1a1a !important;
+}
+
+/* Container Principal - FULLSCREEN */
+.conf-wrapper {
+    width: 100%;
+    margin: 0; 
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+.config-section {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.config-section h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #ff0000; /* Títulos em vermelho */
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+/* Itens de configuração - Estilo Preto/Cinza */
+.config-item {
+    background: #16191c; /* Cinza bem escuro */
+    padding: 25px;
+    border-radius: 0px; /* Quadrado para design mais agressivo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    border: 1px solid #2a2e33;
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+/* Ajustes Modo Claro para Itens */
+body.modo-claro .config-item {
+    background: #ffffff !important;
+    border: 1px solid #bbb;
+}
+body.modo-claro .config-info span, 
+body.modo-claro .config-info p {
+    color: #1a1a1a !important;
+}
+
+.config-info span {
+    display: block;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+.config-info p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #898e91;
+}
+
+/* Inputs e Selects */
+select, .input-rv {
+    background: #000;
+    color: white;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* Botões Vermelhos */
+.btn-perigoso, .btn-upload {
+    background: #8b0000; /* Vermelho sangue escuro */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-perigoso:hover, .btn-upload:hover {
+    background: #ff0000; /* Vermelho vibrante */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.btn-voltar {
+    color: #898e91;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.btn-voltar:hover { color: #fff; }

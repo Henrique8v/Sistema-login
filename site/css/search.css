@@ -1,0 +1,138 @@
+/* search.css */
+
+/* C:\xampp\htdocs\Sistema-login\site\css\search.css */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinha o input à direita dentro da div */
+    padding: 0 15px;
+    height: 50px; /* Ajuste conforme a altura do seu header */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para testar visualmente */
+    border-left: 0px solid #F91313; /* Exemplo de borda lateral */
+    border-right: 0px solid #F91313;
+    flex-grow: 1; /* Faz a div crescer para ocupar o espaço disponível */
+    position: relative;
+}
+
+#search-input {
+    width: 200px;
+    padding: 6px 12px;
+    border-radius: 20px; /* Bordas arredondadas combinam com o estilo sem bordas retas */
+    border: 1px solid #333; /* Uma borda muito sutil apenas para delimitar o campo */
+    background: #000;
+    color: white;
+    transition: all 0.4s ease;
+    outline: none;
+}
+
+#search-input:focus {
+    width: 280px;
+    border-color: #555; /* Muda ligeiramente ao focar */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+#results-list {
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    width: 300px;
+    background: rgba(10, 10, 10, 0.98); /* Quase preto sólido */
+    border-radius: 0 0 10px 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 10002;
+    /* O display: block deve ser controlado pelo JS ao digitar */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.resultado-card {
+    padding: 12px;
+    border-bottom: 1px solid #111; /* Divisor quase invisível */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.3s;
+}
+
+.resultado-card:hover {
+    background: rgba(255, 255, 255, 0.05); /* Um hover cinza bem suave */
+}
+
+.res-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.res-tipo-header {
+    font-size: 10px;
+    color: #F91313; /* O vermelho da sua Ordem */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Container principal do item de resultado */
+.res-item-header {
+    display: flex; /* Alinha foto e texto na horizontal */
+    align-items: center;
+    padding: 8px 12px;
+    text-decoration: none !important; /* Remove sublinhado */
+    transition: background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Container da Imagem para evitar bugs de tamanho */
+.res-img-container {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    flex-shrink: 0; /* Impede a imagem de amassar */
+}
+
+/* A foto do membro ou ícone da página */
+.res-img-header {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Não distorce a imagem */
+    border-radius: 50%; /* Deixa redonda */
+    display: block;
+}
+
+/* Alinhamento dos textos */
+.res-dados-header {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Nome do link (Membro ou Página) */
+.res-nome-header {
+    color: #ccc; /* Cinza claro inicial */
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Subtítulo (Corvo ou Sistema) */
+.res-meta-header {
+    color: #777;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Efeito de Hover (Quando passa o mouse) */
+.res-item-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.res-item-header:hover .res-nome-header {
+    color: #F91313; /* Nome fica Vermelho no hover */
+}
+
+.res-item-header:hover .res-meta-header {
+    color: #fff; /* Subtítulo fica Branco no hover */
+}
+

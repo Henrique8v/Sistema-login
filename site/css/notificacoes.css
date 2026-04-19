@@ -1,0 +1,354 @@
+/* ==========================================================
+   1. CONTAINER, BOTÃO E BADGE (TOPO DO PERFIL)
+   ========================================================== */
+.notif-container { 
+    position: relative; 
+    display: flex; /* MUDAR de inline-block para flex */
+    align-items: center;
+    justify-content: center;
+    margin-top: 0; /* Remover margin fixa que causa compressão */
+    padding: 10px; /* Criar área de toque real */
+    z-index: 100000 !important; 
+    will-change: transform; 
+    height: 45px; /* Altura fixa mínima para Mobile */
+    width: 45px;  /* Largura fixa mínima para Mobile */
+}
+
+#btn-notificacoes {
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    position: relative;
+    transition: 0.3s;
+}
+
+.notif-icon {
+    width: 24px; 
+    opacity: 0.8;
+    will-change: transform;
+    touch-action: manipulation;
+}
+
+.notif-badge {
+    position: absolute; 
+    top: -8px; 
+    right: -8px; 
+    background: #F91313; /* Vermelho Korvado [cite: 2026-02-24] */
+    color: white; 
+    font-size: 10px; 
+    padding: 2px 6px; 
+    border-radius: 10px; 
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(249, 19, 19, 0.6);
+    border: 1px solid #1a1a1a;
+    z-index: 11;
+}
+
+/* ==========================================================
+   2. CAIXA DE LISTAGEM (BOX-NOTIFICACOES)
+   ========================================================== */
+.box-notificacoes {
+    display: none; 
+    position: absolute; 
+    top: 40px; 
+    left: 0;
+    border: 1px solid #333; 
+    width: 320px;
+    min-height: 100px;
+    max-height: 450px;
+    z-index: 1000000 !important; /* Valor superior ao do modal (10000) */
+    background: #121212 !important; /* Garante o preto Korvado */ 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 1); /* Sombra mais pesada para destaque */
+    border-radius: 3px;
+    overflow-y: auto;
+    cursor: default;
+    pointer-events: auto;
+	will-change: opacity, transform;  
+    overscroll-behavior: contain; /* Evita que o scroll do fundo (chat) continue funcionando com o modal aberto */
+}
+
+.notif-header {
+    padding: 15px; 
+    border-bottom: 1px solid #333; 
+    font-size: 11px; 
+    font-weight: bold; 
+    background: #1a1a1a; 
+    color: #F91313; 
+    text-transform: uppercase;
+    letter-spacing: 1.5px;   
+    /* Alinhamento do Título e do X */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==========================================================
+   3. ITENS E SISTEMA DE INTERAÇÃO (ARRRASTAR/SWIPE)
+   ========================================================== */
+.notif-wrapper {
+    position: relative;
+    transition: max-height 0.4s ease, margin 0.4s ease, opacity 0.4s ease;
+    background-color: #a52a2a; /* Cor de fundo na exclusão */
+    overflow: hidden;
+}
+
+.notif-item {
+    display: flex;
+    padding: 12px;
+    border-bottom: 1px solid #222; 
+    position: relative;
+    overflow: hidden;
+    background: #121212; /* Fundo padrão preto [cite: 2026-02-24] */
+    touch-action: pan-y; /* [cite: 2026-02-05] */
+    transition: transform 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+    will-change: transform;
+    pointer-events: none; /* Bloqueia clique interno para o swipe funcionar */
+    z-index: 2;
+}
+
+.notif-item div[style*="pointer-events: auto"], 
+.notif-item a {
+    pointer-events: auto !important; /* Libera apenas links */
+}
+
+.notif-item:hover {
+    background: #121212;
+}
+
+.delete-text {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 1;
+}
+
+/* Animações de Remoção */
+.notif-item.removed {
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    transition: all 0.3s ease-out !important;
+}
+
+.notif-wrapper.collapsing {
+    max-height: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    border: none !important;
+}
+
+/* ==========================================================
+   4. SISTEMA DE TOASTS (NOTIFICAÇÕES FLUTUANTES)
+   ========================================================== */
+#toast-container { 
+    position: fixed; 
+    right: 20px; 
+    bottom: 20px; 
+    z-index: 99999; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    will-change: transform;
+}
+
+.toast { 
+    animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    background: #1a1a1a !important; 
+    border-left: 4px solid #F91313; 
+    border-right: 1px solid #333;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 15px; 
+    color: #eee; 
+    min-width: 250px;
+    max-width: 350px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+}
+
+@keyframes slideIn { 
+    from { transform: translateX(100%); opacity: 0; } 
+    to { transform: translateX(0); opacity: 1; } 
+}
+
+/* Estilo do Botão X */
+.btn-fechar-notif {
+    background: transparent;
+    border: none;
+    color: #F91313;
+    font-size: 24px; /* Tamanho confortável */
+    line-height: 1;
+    cursor: pointer;
+	will-change: transform important!;
+    transition: 0.3s;
+    display: flex; /* Escondido no Desktop por padrão */
+	transition: transform 0.2s ease;
+    padding: 5px 10px;
+    margin: -5px -10px -5px 0; /* Ajuste fino para não quebrar o padding do header */
+
+}
+
+.btn-fechar-notif:hover {
+    color: #fff;
+    transform: scale(1.5) rotate(90deg); /* Efeito cibernético ao passar o mouse */
+}
+
+/* ==========================================================
+   ADAPTAÇÃO NOTIFICACOES (480px / 800px)
+   ========================================================== */
+
+@media (max-width: 800px) {
+    .box-notificacoes {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        /* Em 800px, 40% da tela é o suficiente para um visual elegante */
+        width: 40vw !important; 
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        z-index: 2000000 !important;
+        border-radius: 0;
+        display: none; /* Controlado pelo toggleNotif() */
+        flex-direction: column;
+        
+        /* Performance e Estilo Korvado [cite: 2026-02-05] */
+        will-change: transform !important;
+        background: #121212 !important;
+        box-shadow: 15px 0 50px rgba(0,0,0,0.9);
+        border-right: 1px solid #333;
+    }
+
+    /* Ativação do Flex via JS */
+    .box-notificacoes[style*="display: block"],
+    .box-notificacoes.active { 
+        display: flex !important; 
+    }
+
+    .notif-header {
+        padding: 0 25px;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100%;
+        box-sizing: border-box;
+        height: 80px; /* Header levemente mais alto que o mobile */
+        border-bottom: 2px solid #F91313; /* Destaque Korvado [cite: 2026-02-24] */
+        background: #1a1a1a;
+        color: #F91313;
+        font-size: 16px; 
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        will-change: transform !important;
+    }
+
+    /* O botão X para fechar em 800px */
+    .btn-fechar-notif {
+        display: block !important; 
+        background: transparent;
+        border: none;
+        color: #F91313;
+        font-size: 30px; 
+        line-height: 1;
+        cursor: pointer;
+        padding: 10px;
+        transition: transform 0.2s ease;
+    }
+
+    .btn-fechar-notif:hover {
+        transform: scale(1.5) rotate(90deg); /* Efeito cibernético ao passar o mouse */
+        color: #fff;
+    }
+
+    /* Conteúdo das notificações em tablets */
+    .notif-item {
+        padding: 22px 20px;
+        border-bottom: 1px solid #222;
+        font-size: 14px; /* Fonte levemente maior que no smartphone */
+        transition: background 0.3s;
+    }
+
+    .notif-item:hover {
+        background: rgba(249, 19, 19, 0.05); /* Leve brilho vermelho ao passar o mouse */
+    }
+
+    /* Ajuste para o Toast (Notificações flutuantes) em 800px */
+    #toast-container {
+        right: 40px;
+        bottom: 40px;
+        width: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .box-notificacoes {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 70vw !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        z-index: 2000000 !important;
+        border-radius: 0;
+		display: none; 
+		flex-direction: column;
+		will-change: transform important!;
+		zoom: 1.0;
+    }
+
+    /* Quando aberto, usamos display flex para organizar o cabeçalho e lista */
+    .box-notificacoes[style*="display: block"],
+    .box-notificacoes.active { 
+        display: flex !important; 
+    }
+
+    .notif-header {
+        padding: 20px;
+        font-size: 14px;
+        display: flex !important;
+		flex-direction: row;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100%;
+        box-sizing: border-box;
+        height: 70px; /* Header alto para mobile */
+        border-bottom: 2px solid #F91313; /* Linha de destaque Korvado */
+	    background: transparent;
+        border: none;
+        color: #F91313;
+        font-size: 16px; /* Tamanho para toque fácil no mobile */
+        line-height: 1;
+        cursor: pointer;
+		will-change: transform important!;
+		zoom: 0.5;
+    }
+
+    /* O botão X para fechar */
+    .btn-fechar-notif {
+        display: block !important; /* Só aparece no mobile */
+        font-size: 32px;
+        line-height: 1;
+        cursor: pointer;
+		transition: transform 0.2s ease;
+        padding: 10px;
+		zoom: 2;
+    }
+	
+	.btn-fechar-notif:hover {
+        transform: scale(1.5) rotate(90deg); /* Efeito cibernético ao passar o mouse */
+        color: #fff;
+    }
+
+    .notif-item {
+        padding: 20px 15px; /* Escala maior para o dedo */
+        border-bottom: 1px solid #222;
+    }
+}

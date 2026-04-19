@@ -1,0 +1,238 @@
+Estrutura Completa e Unificada - RV PROJECT V1.0.1
+===========================================================================
+CRIADOR: Lorde Raveno (Landerson H.C. Memoria) | ANO: 2026
+
+Local Padrão: C:\xampp\htdocs\Sistema-login\
+
+Sistema-login/                         🚀 PASTA RAÍZ 
+│
+├── 🎯 ARQUIVOS CORE (Raiz)
+│   ├── 📄 index.php                   ⭐ Ponto de entrada / Login 
+│   ├── 📄 cadastrar.php               ⭐ Cadastro de novos usuários 
+│   └── 📄 amigos.php  
+│                ⭐ Gerenciamento de conexões 
+├── ARQUIVOS CORE (Raiz)
+│   ├── 📄 dependencias.bat            ⭐ Instalação de dependências
+│   ├── 📄 requeriments.txt            ⭐ Versões para dependencias.cmd 
+│   └── 📄 README.md                   ⭐ Sobre o Projeto
+│   
+├── 🖥 LOGICA & PROCESSAMENTO (Raiz)
+│   ├── 📄 mensagens.php               Interface de chat 
+│   ├── 📄 membros.php                 Usuários do sistema - Busca 
+│   ├── 📄 perfil_do_usuario.php       Visualização de perfil próprio 
+│   ├── 📄 perfil_membro.php           Visualização de perfil de terceiros 
+│   ├── 📄 sair.php                    Encerramento de sessão 
+│   └── 📄 conf.php                    Configurações do Usuário  
+│
+├── ⚙️ LOGICA & PROCESSAMENTO
+│   ├── 📄 chat_logica.php             Motor do sistema de mensagens 
+│   ├── 📄 timeline_logica.php         Processamento do feed 
+│   ├── 📄 membros_logica.php          Lógica de busca e filtragem 
+│   ├── 📄 processa_amizade.php        Handler de solicitações 
+│   ├── 📄 editar_feed.php             Edição de postagens 
+│   ├── 📄 editar_perfil.php           Edição de dados cadastrais 
+│   ├── 📄 notif_area.php              Interface de notificações 
+│   ├── 📄 pedidos_amg.php             Lógica de convites pendentes 
+│   └── 📄 teste-db.php                Script de teste de conexão 
+│
+├── 📦 classes/                        📦 POO & Regras de Negócio
+│   └── 📄 Usuarios.php                Classe mestre de usuários 
+│
+├── 🛠 config/                         🛠 Definições de Ambiente
+│   ├── 📄 config.php                  Parâmetros de conexão DB 
+│   └── 📄 readme.md                   Instruções de configuração 
+│
+├── 🖥 coreview/                       🖥 Interface WebView & DLLs
+│   └── 📄 sciter.dll                  Avulso. *Projeto sem uso de UI Gráfica
+│
+├── 📊 dashboard/                      📊 Painel Administrativo
+│   ├── 📄 my_dashboard.php            Interface administrativa 
+│   ├── 📄 my_dashboard.css            Estilo do painel 
+│   ├── 📂 acess_panel/                Controle de acesso  
+│   │   └── 📂 paginas/                Documentação técnica para acess_panel.htm
+│   ├── 📄 repo_manager.php            Gerenciador de repositório  
+│   └── 📂 tunneling/                  Conectividade Externa (Ngrok/Pinggy) 
+│       ├── 📂 frpc/                   Fast Reverse Proxy 
+│       └── 📂 pinggy_panel/           Lógica de túnel dinâmico 
+│           ├── 📂 logs
+│           ├── 📄 config.json
+│           ├── 📄 executar_pinggy.py
+│           ├── 📄 ligar_rastros.bat
+│           ├── 📄 ligar_rastros_silent.py
+│           ├── 📄 ligar_tunel.bat
+│           ├── 📄 monitor_tunnel.py
+│           ├── 📄 pinggy_painel.css
+│           ├── 📄 pinggy_painel.js
+│           ├── 📄 pinggy_panel.php
+│           ├── 📄 status.txt
+│           ├── 📄 status_rastros.txt
+│           └── 📄 tunnel_control.py
+│
+├── 🗄 database/                       🗄 Persistência de Dados
+│   ├── 📄 projeto_login.sql           Schema do banco de dados 
+│   └── 📄 readme.md                   Informação básica 
+│
+├── 🖼 imagens/                        🖼 Assets Estáticos
+│   ├── 📄 principal.jpg               Background principal 
+│   └── 📂 icon/                       Identidade visual (favicon/logo) 
+│       ├── 📄 logo.ico                Icone de Pagina
+│       └── 📄 logo.png                Icone de Pagina
+│
+├── 📝 registros/                      📝 Logs de Desenvolvimento
+│   ├── 📂 progresso_1/                Capturas de estágio inicial 
+│   ├── 📂 progresso_2/                Capturas de evolução 
+│   └── 📂 progresso_3/                Capturas do Estado atual do sistema 
+│ 
+├── 📂 notes/
+│   ├── 📂 schemes/
+│   │   ├── 📄 Checklist de Implementação.txt
+│   │   ├── 📄 Como usar.txt
+│   │   ├── 📄 config.txt               * Sobre o arquivo de configuração PDO e BD
+│   │   ├── 📄 Estrutura Completa e Unificada.txt
+│   │   ├── 📄 Fluxo de Execução Completo.txt
+│   │   ├── 📄 Funcionalidades Principais.txt
+│   │   ├── 📄 install.txt              * Recursos de instalação necessários para o projeto
+│   │   ├── 📄 Mapa de Dependências de Imports.txt
+│   │   └── 📄 Notas Importantes.txt
+│   ├── Metas.txt                       * Lista de Tarefas e Prioridades para Cumprir
+│   ├── requesitos.html                 * Informações de Compatibilidade
+│   └── suport.html                     * Material de Ajuda
+│
+├── 📜 scripts/                        📜 Automação & Serviços
+│   └── 📂 python/
+│       ├── 📄 executar_cpp.py
+│       ├── 📄 limpeza_arquivos.py
+│       └── 📄 limpeza_autonoma.py
+│
+├── 📜 services/
+│   └── 📂 cpp/
+│       ├── analisador.cpp
+│       └── analisador.exe
+│
+└── 🌐 site/                           🌐 Front-end & Assets Web
+    ├── 📂 assets/                     Pasta "Simbólica"
+    │   ├── 📂 css/                    * Vazio
+    │   ├── 📂 img/                    * Vazio
+    │   └── 📂 js/                     * Vazio                    
+    ├── 📂 conf/                       * Configurações do Usuário
+    │   ├── 📂 css/
+    │   │   └── 📄 conf.css
+    │   ├── 📂 js/
+    │   │   └── 📄 conf.js
+    │   └── 📂 php/
+    │       ├── 📄 atualizar_privacidade.php 
+    │       ├── 📄 deletar_conta.php
+    │       └── 📄 upload_config.php
+    ├── 📂 css/                        Folhas de estilo organizadas
+    │   ├── 📄 amigos.css
+    │   ├── 📄 editar_feed.css
+    │   ├── 📄 editar_perfil.css
+    │   ├── 📄 footer.css
+    │   ├── 📄 login.css
+    │   ├── 📄 mensagens.css
+    │   ├── 📄 menu.css
+    │   ├── 📄 modal_post.css
+    │   ├── 📄 modalEdit.css
+    │   ├── 📄 mute-toggle.css
+    │   ├── 📄 notificacoes.css
+    │   ├── 📄 perfil_do_usuario.css
+    │   ├── 📄 perfil_global.css
+    │   ├── 📄 perfil_membro.css
+    │   ├── 📄 posts.css
+    │   ├── 📄 repo.css
+    │   ├── 📄 search.css
+    │   └── 📄 template.css
+    ├── 📂 data/                       Handlers AJAX e lógica de backend
+    │   ├── 📄 amizade_aceitar.php
+    │   ├── 📄 amizade_logica.php
+    │   ├── 📄 arrastar_notificacoes.php
+    │   ├── 📄 atualizar_user.php
+    │   ├── 📄 comentar_logica.php
+    │   ├── 📄 curtir_logica.php
+    │   ├── 📄 enviar_msg.php
+    │   ├── 📄 ler_msg.php
+    │   ├── 📄 limpar_notificacoes.php
+    │   ├── 📄 limpeza_arquivos.php
+    │   ├── 📄 marcar_lidas.php
+    │   ├── 📄 notificacoes_funcoes.php
+    │   ├── 📄 notificacoes_loop.php
+    │   ├── 📄 pesquisa_logica.php
+    │   ├── 📄 pesquisa_logica_membros.php
+    │   ├── 📄 processar_notificacao.php
+    │   ├── 📄 user.php
+    │   ├── 📄 user_menu.php
+    │   └── 📄 visualizar_post.php
+    ├── 📂 docs/                       Documentos para páginas e para importar
+    │   └── 📄 symbols1.txt
+    ├── 📂 img/
+    │   ├── 📂 avatar/                    Imagens de avatas de perfil
+    │   ├── 📂 icons/                     Icons utilizados nas páginas e interface do ususario
+    │   ├── 📂 perfil/                    Icone padrão de perfil
+    │   ├── 📂 perfis/                    Diretório de Uploads das Imagens de Perfil de cada usuario cadastrado
+    │   ├── 📂 posts/                     Diretório de Uploads de Usuários
+    │   ├── 📄 bg_menu1.jpg
+    │   ├── 📄 bg_menu2.jpg
+    │   ├── 📄 bg_portrait.jpg
+    │   ├── 📄 bg_template.jpg
+    │   ├── 📄 logo.png
+    │   ├── 📄 logo4-removebg-preview_pack_1.zip
+    │   ├── 📄 logo4-removebg-preview1.png
+    │   ├── 📄 logo4-removebg-preview2.png
+    │   ├── 📄 logomarca.jpg
+    │   ├── 📄 search_layout.jpg
+    │   └── 📄 setting.png
+    ├── 📂 js/                         Scripts de comportamento 
+    │   ├── 📄 chat_componente.js
+    │   ├── 📄 editar_feed.js
+    │   ├── 📄 editar_perfil.js
+    │   ├── 📄 footer.js
+    │   ├── 📄 header.js
+    │   ├── 📄 imagens_da_galeria.js
+    │   ├── 📄 loader.js
+    │   ├── 📄 membros.js
+    │   ├── 📄 mensagens.js
+    │   ├── 📄 modal_post.js
+    │   ├── 📄 modal_post_atualizar.js
+    │   ├── 📄 modal_post_data.js
+    │   ├── 📄 modal_post_delay.js
+    │   ├── 📄 modal_post_excluir.js
+    │   ├── 📄 modal_post_midia.js
+    │   ├── 📄 modal_post_recursivo.js
+    │   ├── 📄 modal_post_respostas.js
+    │   ├── 📄 modalEdit.js
+    │   ├── 📄 notificacoes.js
+    │   ├── 📄 perfil_do_usuario.js
+    │   ├── 📄 perfil_membro.js
+    │   ├── 📄 search.js
+    │   ├── 📄 timeline.js
+    │   └── 📄 video_post.js
+    ├── 📂 public/
+    │   ├── 📄 bg_template.jpg
+    │   ├── 📄 fade.gif
+    │   ├── 📄 home.php                  * Futura Entrada de Home Page para Postagens Publicas e Feed de Noticias
+    │   ├── 📄 red-banner-bg.png
+    │   └── 📄 repo.php                  * Entrada para o Site Completo
+    ├── 📂 rv_project_inc/               Site Completo do RV Project Inc.
+    │   ├── 📂 audio/
+    │   │   └── 🎵 2WEI, Tommee Profitt, Fleurie - Mad World (Official Epic Cover).mp3
+    │   ├── 📂 css/
+    │   │   ├── 📂 galeria/
+    │   │   │   └── 📄 galeria.css
+    │   │   └── 📂 o_principio/
+    │   │       └── 📄 principio.css
+    │   ├── 📂 docs/
+    │   │   └── 📝 (c)Ravenismo - Gênesis [Lorde Raveno] (Beta).pdf
+    │   ├── 📂 img/
+    │   │   ├── 📂 Files/                 * Diretórios e Arquivos Avulsos para uso
+    │   │   ├── 📂 galeria/               * Imagens da Galeria do Site RVProject
+    │   │   └── 📂 o-principio/           * Imagens da Pagina O Principio
+    │   ├── 📂 posts/
+    │   │   ├── 📂 galeria/
+    │   │   │   └── 📄 galeria.php
+    │   │   └── 📂 o_principio/
+    │   │       ├── 📄 o_principio.php
+    │   │       └── 📄 pagination.js
+    │   └── 📂 video/
+    ├── 📂 video/
+    │   └── 📂 posts/
+    └── 📄 README.md                      Informações Básicas

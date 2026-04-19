@@ -1,0 +1,152 @@
+/* PADRÃO CIBERNÉTICO KORVADO [cite: 2026-02-24] */
+:root {
+    --hacker-green: #00ff41;
+    --dark-void: #020202;
+    --terminal-font: 'Courier New', Courier, monospace;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.terminal-body {
+    background: var(--dark-void);
+    color: var(--hacker-green);
+    font-family: var(--terminal-font);
+    overflow-x: hidden;
+}
+
+.tableWidth {
+    width: 100vw;
+    max-width: 1200px; /* Aumentado para caber 3 cards lado a lado */
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 blocos horizontais */
+    gap: 20px;
+}
+
+/* EFEITO DE SCANLINE (LINHAS DE TV ANTIGA) */
+.scanline {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(to right, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* HEADER DO SISTEMA */
+.hacker-header {
+    /* Faz o header ocupar todas as colunas do grid (de 1 até o fim) */
+    grid-column: 1 / -1; 
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 30px; /* Espaço para os cards abaixo */
+    
+    /* Cores e Bordas Cibernéticas [cite: 2026-02-24] */
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,243,255,0.05) 50%, rgba(0,0,0,1) 100%);
+    border-top: 2px solid #9ba2ba;
+    border-bottom: 2px solid var(--hacker-green);
+    border-right: 2px solid #4d70db;
+    border-left: 2px solid #4d70db;
+    
+    /* Efeitos de Terminal */
+    text-shadow: 0 0 10px var(--hacker-cyan);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    animation: flicker 1.5s infinite;
+    
+    /* Performance e Posicionamento */
+    position: relative; 
+    will-change: transform; [cite: 2026-02-05]
+    box-sizing: border-box;
+}
+
+/* CARD DE USUÁRIO */
+.hacker-card {
+    background: rgba(0, 255, 65, 0.03);
+    border: 1px solid #111;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    transition: 0.3s;
+    will-change: transform; [cite: 2026-02-05]
+    touch-action: pan-y;
+}
+
+.hacker-card:hover {
+    border-color: var(--hacker-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+    transform: scale(1.02);
+}
+
+/* --- DESTAQUE DE SINTAXE (LABELS E VALUES) --- */
+
+/* Força os labels a terem cor mesmo dentro de spans */
+.label-email { color: #569cd6 !important; font-weight: bold; }
+.label-user  { color: #b5cea8 !important; font-weight: bold; }
+.label-pass  { color: #c586c0 !important; font-weight: bold; }
+
+/* Força os valores a terem as cores de destaque */
+.val-email { color: #ce9178 !important; margin-left: 5px; }
+.val-user  { color: #dcdcaa !important; margin-left: 5px; }
+.val-pass  { color: var(--hacker-green) !important; margin-left: 5px; }
+
+/* Ajuste de layout dos parágrafos internos do card */
+.details p {
+    margin: 5px 0;
+    display: flex; /* Mantém label e valor na mesma linha */
+    flex-wrap: wrap; /* Evita quebra em DPI alto */
+    font-size: 0.9rem;
+}
+
+/* O efeito de blur deve ser aplicado ao span da senha */
+.pass-blur {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+    cursor: pointer;
+}
+
+/* Ajuste nos ícones dentro dos spans de label */
+.details span[class^="label-"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-id {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px #000;
+}
+
+/* SENHA BLUR (PARA SEGURANÇA VISUAL) */
+
+.pass-blur:hover {
+    filter: blur(0);
+}
+
+/* ANIMAÇÕES */
+@keyframes flicker {
+    0% { opacity: 0.9; }
+    5% { opacity: 0.5; }
+    10% { opacity: 0.9; }
+    100% { opacity: 1; }
+}
+
+/* AJUSTE DPI ALTO */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+    .hacker-card { padding: 10px; }
+    .details p { font-size: 0.85rem; }
+}
+

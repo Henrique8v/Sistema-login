@@ -1,0 +1,6 @@
+A pasta assets possui os recursos externos que os templates podem precisar, como imagens, folhas de estilo e JavaScripts. A pasta está subdivida em três subpastas, você pode colocar os nomes das pastas como:
+
+img: pasta destinada aos arquivos de imagens utilizados no código.
+javascript: arquivos com os códigos que executam ações.
+css: arquivos de estilizações baseadas no CSS.
+É mais comum colocar na pasta assets as imagens utilizadas no projeto.

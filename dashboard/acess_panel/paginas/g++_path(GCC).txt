@@ -1,0 +1,32 @@
+1. Localize o seu G++
+
+Baseado nos seus scripts anteriores, o seu compilador está aqui:
+
+C:\Program Files\CodeBlocks\MinGW\bin
+
+Abra essa pasta no seu Windows Explorer.
+
+Clique na barra de endereços no topo e copie o caminho.
+
+2. Adicione ao PATH do Sistema
+Pressione a tecla Windows e digite: Variáveis de ambiente.
+
+Clique em Editar as variáveis de ambiente do sistema.
+
+Na janela que abrir, clique no botão Variáveis de Ambiente (embaixo).
+
+Na lista de baixo (Variáveis do Sistema), procure pela variável chamada Path e clique em Editar.
+
+Clique em Novo e cole o caminho: C:\Program Files\CodeBlocks\MinGW\bin
+
+Dê OK em todas as janelas.
+
+3. O Teste de Vida
+Importante: Feche o seu terminal atual e abra um novo (para ele carregar as novas configurações).
+Digite novamente:
+
+#Bash_______________________________________________________________________
+
+   g++ --version
+
+Se aparecer algo como g++ (MinGW-W64...) 14.2.0, o caminho está livre!

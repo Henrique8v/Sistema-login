@@ -1,0 +1,497 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang22 Para acessar diretamente a URL principal sem precisar digitar o caminho completo do arquivo PHP, voc\'ea precisa configurar o redirecionamento ou a raiz do servidor (Document Root).\par
+Existem tr\'eas formas principais de fazer isso, dependendo de onde voc\'ea est\'e1 mexendo:\par
+1. Usando um arquivo .htaccess (A mais comum)\par
+Se voc\'ea estiver usando Apache (XAMPP, WAMP ou a maioria das hospedagens), voc\'ea pode criar um arquivo chamado .htaccess na pasta raiz do seu projeto (/Sistema-login/).\par
+Coloque o seguinte c\'f3digo nele:\par
+Apache\par
+RewriteEngine On\par
+# Redireciona a raiz para o index.php que est\'e1 dentro das subpastas\par
+RewriteRule ^$ site/public/index.php [L]\par
+# Caso queira que tudo que for digitado aponte para l\'e1\par
+RewriteCond %\{REQUEST_FILENAME\} !-f\par
+RewriteCond %\{REQUEST_FILENAME\} !-d\par
+RewriteRule ^(.*)$ site/public/index.php [L]\par
+2. Criando um index.php na raiz\par
+Esta \'e9 a solu\'e7\'e3o "quebra-galho" mais r\'e1pida. Na pasta /Sistema-login/, crie um arquivo index.php simples que apenas "chama" o arquivo correto:\par
+PHP\par
+<?php\par
+// Redireciona para o caminho correto\par
+header("Location: site/public/index.php");\par
+exit;\par
+?>\par
+Assim, quando voc\'ea acessar a URL curta, o PHP automaticamente te joga para a URL longa, mas o usu\'e1rio s\'f3 precisa digitar a curta.\par
+3. Configurando o Virtual Host (O jeito "profissional")\par
+Se voc\'ea tem acesso \'e0s configura\'e7\'f5es do Apache no seu computador (como no arquivo httpd-vhosts.conf), voc\'ea deve mudar o DocumentRoot para apontar diretamente para a pasta public.\par
+No seu caso, a configura\'e7\'e3o ficaria algo como:\par
+Apache\par
+DocumentRoot "C:/caminho/para/seu/projeto/Sistema-login/site/public"\par
+Por que isso acontece?\par
+Isso acontece porque o servidor web (Apache/Nginx) procura por um arquivo chamado index.php ou index.html na pasta que voc\'ea acessa. Como no seu projeto esse arquivo est\'e1 escondido dentro de site/public/, o servidor n\'e3o o encontra na raiz e mostra as pastas (ou erro 403).\par
+Qual dessas op\'e7\'f5es voc\'ea estava tentando usar antes? Se voc\'ea estiver usando o comando php -S localhost:8080 para rodar o projeto, voc\'ea deve rodar o comando dentro da pasta site/public.\par
+Aqui est\'e3o as duas formas mais diretas de resolver isso para o seu ambiente local:\par
+Op\'e7\'e3o 1: O arquivo .htaccess (Recomendado)\par
+Essa \'e9 a melhor op\'e7\'e3o porque funciona sem mexer nas configura\'e7\'f5es globais do XAMPP.\par
+V\'e1 at\'e9 a pasta raiz do seu projeto: C:\\xampp\\htdocs\\Sistema-login\\\par
+Crie um arquivo chamado .htaccess (com o ponto no in\'edcio e sem extens\'e3o .txt).\par
+Cole este c\'f3digo:\par
+Apache\par
+RewriteEngine On\par
+# Quando acessar /Sistema-login/, ele carrega o conte\'fado de /site/public/\par
+RewriteRule ^$ site/public/index.php [L]\par
+RewriteCond %\{REQUEST_FILENAME\} !-f\par
+RewriteCond %\{REQUEST_FILENAME\} !-d\par
+RewriteRule ^(.*)$ site/public/index.php/$1 [L]\par
+Op\'e7\'e3o 2: O arquivo index.php de encaminhamento\par
+Se n\'e3o quiser mexer com regras de servidor, fa\'e7a o seguinte:\par
+Na pasta C:\\xampp\\htdocs\\Sistema-login\\, crie um arquivo index.php.\par
+Coloque apenas este c\'f3digo:\par
+PHP\par
+<?php\par
+require __DIR__ . '/site/public/index.php';\par
+Nota: Usar o require \'e9 melhor que o header(Location), pois ele mant\'e9m a URL limpa no navegador sem mostrar o caminho completo das pastas.\par
+Por que isso \'e9 necess\'e1rio?\par
+No XAMPP, o servidor Apache olha para a pasta que voc\'ea acessa e procura o arquivo index. Como o seu "ponto de entrada" (o cora\'e7\'e3o do site) est\'e1 escondido dois n\'edveis abaixo, precisamos dizer ao Apache: "Ei, quando algu\'e9m chegar aqui, entregue o que est\'e1 l\'e1 na pasta public".\par
+Dica B\'f4nus: Rodando direto da pasta Public\par
+Se voc\'ea quiser que o localhost:8080 j\'e1 abra direto o seu sistema (sem nem precisar do /Sistema-login/ na URL), voc\'ea deve alterar o arquivo C:\\xampp\\apache\\conf\\httpd.conf:\par
+Procure por DocumentRoot "C:/xampp/htdocs".\par
+Mude para DocumentRoot "C:/xampp/htdocs/Sistema-login/site/public".\par
+Fa\'e7a o mesmo na linha logo abaixo: <Directory "C:/xampp/htdocs/Sistema-login/site/public">.\par
+Reinicie o Apache no painel do XAMPP.\par
+Voc\'ea conseguiu criar o arquivo .htaccess ou prefere que eu te ajude a configurar o VirtualHost do Apache?\par
+se eu fizer isso, posteriormente se eu criar um projeto paralelo n\'e3o vai dar problema?: DocumentRoot "C:/xampp/htdocs/Sistema-login/site/public"\par
+Excelente pergunta. A resposta curta \'e9: Sim, vai dar problema.\par
+Se voc\'ea alterar o DocumentRoot global do Apache, o localhost:8080 passar\'e1 a enxergar apenas a pasta do seu sistema de login. Se voc\'ea criar uma pasta C:/xampp/htdocs/Projeto2, voc\'ea n\'e3o conseguir\'e1 acess\'e1-la via localhost:8080/Projeto2, pois o Apache achar\'e1 que "Projeto2" \'e9 uma rota dentro do seu sistema atual.\par
+Para evitar isso e manter a organiza\'e7\'e3o profissional, voc\'ea tem duas sa\'eddas melhores:\par
+1. A Solu\'e7\'e3o do arquivo .htaccess (A mais segura)\par
+Como eu mencionei antes, se voc\'ea colocar o arquivo .htaccess dentro da pasta Sistema-login, ele s\'f3 afetar\'e1 aquele projeto.\par
+localhost:8080/Sistema-login -> Abre seu sistema direto.\par
+localhost:8080/Projeto2 -> Continua funcionando normalmente.\par
+2. Criar um "Virtual Host" (A mais elegante)\par
+Essa \'e9 a forma que desenvolvedores profissionais usam. Voc\'ea pode criar "dom\'ednios falsos" no seu PC. Em vez de localhost:8080/Sistema-login, voc\'ea acessaria algo como meusistema.test.\par
+Como fazer:\par
+Abra o arquivo C:\\xampp\\apache\\conf\\extra\\httpd-vhosts.conf.\par
+Adicione este bloco ao final:\par
+Apache\par
+<VirtualHost *:8080>\par
+    DocumentRoot "C:/xampp/htdocs/Sistema-login/site/public"\par
+    ServerName meusistema.test\par
+</VirtualHost>\par
+<VirtualHost *:8080>\par
+    DocumentRoot "C:/xampp/htdocs"\par
+    ServerName localhost\par
+</VirtualHost>\par
+Depois, abra o Bloco de Notas como Administrador e abra o arquivo C:\\Windows\\System32\\drivers\\etc\\hosts.\par
+Adicione esta linha no final: 127.0.0.1 meusistema.test\par
+Resumo: Qual escolher?\par
+Se voc\'ea quer...\tab Use...\par
+Rapidez e zero risco de estragar outros projetos\tab  Arquivo .htaccess na pasta do projeto.\par
+Simular um site real com um nome tipo .com ou .test\tab Virtual Host (mais avan\'e7ado).\par
+Apenas testar algo r\'e1pido e n\'e3o liga para a URL\tab Arquivo index.php na raiz da pasta.\par
+Dica de ouro: No XAMPP, evite sempre mudar o DocumentRoot global no httpd.conf, pois ele \'e9 o seu "gerenciador" de todos os projetos na pasta htdocs.\par
+Essa configura\'e7\'e3o cria o que chamamos de Hospedagem Virtual. Em vez de o Apache tratar o localhost:8080 como uma pasta \'fanica e gigante, ele passa a agir como um servidor que hospeda v\'e1rios sites diferentes ao mesmo tempo, identificando cada um pelo nome (URL).\par
+Aqui est\'e1 o que cada parte faz:\par
+1. O Bloco do seu Sistema\par
+Apache\par
+<VirtualHost *:8080>\par
+    DocumentRoot "C:/xampp/htdocs/Sistema-login/site/public"\par
+    ServerName meusistema.test\par
+</VirtualHost>\par
+<VirtualHost *:8080>: Diz ao Apache: "Tudo o que vier pela porta 8080, verifique as regras abaixo".\par
+DocumentRoot: Define a "raiz". Quando voc\'ea acessar esse nome espec\'edfico, o Apache vai entrar direto na pasta public. Para o navegador, o arquivo index.php estar\'e1 na "capa" do site.\par
+ServerName meusistema.test: Define o "apelido". O Apache s\'f3 ativar\'e1 essa regra se voc\'ea digitar exatamente {{\field{\*\fldinst{HYPERLINK http://meusistema.test:8080 }}{\fldrslt{http://meusistema.test:8080\ul0\cf0}}}}\f0\fs22  no navegador.\par
+2. O Bloco de Seguran\'e7a (Localhost)\par
+Apache\par
+<VirtualHost *:8080>\par
+    DocumentRoot "C:/xampp/htdocs"\par
+    ServerName localhost\par
+</VirtualHost>\par
+Por que isso \'e9 necess\'e1rio? No momento em que voc\'ea ativa Virtual Hosts, o Apache ignora a configura\'e7\'e3o padr\'e3o. Se voc\'ea n\'e3o colocar esse segundo bloco, ao digitar localhost, o Apache poderia te jogar para dentro do seu projeto de login por engano.\par
+Isso garante que o localhost:8080 continue mostrando a sua lista normal de pastas do htdocs.\par
+A grande vantagem para voc\'ea\par
+Com isso configurado, voc\'ea resolve o seu problema de dois jeitos:\par
+URL Limpa: Voc\'ea acessa {{\field{\*\fldinst{HYPERLINK http://meusistema.test:8080 }}{\fldrslt{http://meusistema.test:8080\ul0\cf0}}}}\f0\fs22  e j\'e1 cai direto no seu site, sem ver as pastas /site/public/.\par
+Organiza\'e7\'e3o: Se amanh\'e3 voc\'ea criar um Projeto-Barbearia, voc\'ea cria um novo bloco com ServerName barbearia.test apontando para a pasta dele.\par
+O detalhe importante: O arquivo "Hosts"\par
+O Apache sozinho n\'e3o consegue convencer o seu Windows que meusistema.test existe. Por isso, voc\'ea precisa editar o arquivo C:\\Windows\\System32\\drivers\\etc\\hosts e adicionar: 127.0.0.1 meusistema.test\par
+Isso diz ao Windows: "Sempre que eu digitar esse nome, n\'e3o procure na internet; mande para o meu pr\'f3prio computador (127.0.0.1)".\par
+Cuidado com o ngrok: Como voc\'ea mencionou o link do ngrok na primeira pergunta, lembre-se: o ngrok geralmente espelha uma porta (ex: 8080). Se voc\'ea usar Virtual Hosts, o ngrok pode se confundir porque ele n\'e3o sabe qual ServerName voc\'ea quer usar.\par
+Se o seu foco principal for o link do ngrok, o arquivo .htaccess que te mandei antes ainda \'e9 a solu\'e7\'e3o mais "\'e0 prova de erros".\par
+Voc\'ea prefere tentar configurar esse Virtual Host agora ou vamos pelo caminho mais simples do .htaccess?\par
+Se o Apache iniciou (ficou verde) e a p\'e1gina ficou em branco, significa que a conex\'e3o foi feita, mas o PHP pode estar encontrando um erro silencioso ou n\'e3o est\'e1 encontrando o arquivo inicial.\par
+\par
+Aqui est\'e3o os passos para resolver:\par
+\par
+1. Ajuste a URL no Navegador\par
+Como voc\'ea configurou o Apache para escutar na porta 8080, voc\'ea precisa incluir a porta na URL:\par
+\par
+Acesse: {{\field{\*\fldinst{HYPERLINK http://ravenismo.test:8080 }}{\fldrslt{http://ravenismo.test:8080\ul0\cf0}}}}\f0\fs22\par
+\par
+Se voc\'ea digitar apenas ravenismo.test, o navegador tentar\'e1 a porta padr\'e3o (80), onde o seu VirtualHost n\'e3o "atende".\par
+\par
+2. Verifique o arquivo Index\par
+Confira se dentro da pasta C:/xampp/htdocs/Sistema-login/site/public existe um arquivo chamado index.php. Para testar se \'e9 o PHP que est\'e1 falhando, apague o conte\'fado do seu index.php temporariamente e coloque apenas:\par
+\par
+PHP\par
+\par
+<?php\par
+echo "O VHost est\'e1 funcionando!";\par
+Se ao atualizar a p\'e1gina aparecer essa frase, o problema est\'e1 no c\'f3digo do seu sistema (provavelmente um erro de caminho de arquivos/require).\par
+\par
+3. Permiss\'f5es e Barras no Apache\par
+O Apache \'e0s vezes \'e9 chato com as barras no Windows. Tente inverter as barras no seu arquivo httpd-vhosts.conf (use / em vez de \\) e adicione a permiss\'e3o de diret\'f3rio, que \'e9 essencial:\par
+\par
+Apache\par
+\par
+<VirtualHost *:8080>\par
+    DocumentRoot "C:/xampp/htdocs/Sistema-login/site/public"\par
+    ServerName ravenismo.test\par
+    <Directory "C:/xampp/htdocs/Sistema-login/site/public">\par
+        AllowOverride All\par
+        Require all granted\par
+    </Directory>\par
+</VirtualHost>\par
+Nota: O bloco <Directory> \'e9 o que d\'e1 "permiss\'e3o" para o Apache ler os arquivos daquela pasta. Sem isso, ele pode dar erro 403 ou tela branca.\par
+\par
+4. O "Vil\'e3o" das telas brancas: Erros Ocultos\par
+Se continuar branco, o PHP est\'e1 dando erro e escondendo de voc\'ea.\par
+\par
+V\'e1 no Painel do XAMPP.\par
+\par
+Clique no bot\'e3o Config na linha do Apache e escolha PHP (php.ini).\par
+\par
+Procure por display_errors.\par
+\par
+Mude para display_errors=On.\par
+\par
+Reinicie o Apache.\par
+\par
+Agora, em vez de uma tela branca, o navegador deve mostrar o erro exato (ex: "Arquivo n\'e3o encontrado na linha X").\par
+\par
+E o ngrok?\par
+Lembre-se: o ngrok n\'e3o conhece o nome ravenismo.test. Se voc\'ea for usar o ngrok, voc\'ea deve apont\'e1-lo para a porta: ngrok http 8080\par
+\par
+Para que o ngrok funcione com o VirtualHost, o comando correto seria: ngrok http --host-header=ravenismo.test 8080\par
+\par
+Tente acessar com a porta 8080 no final do nome. Se ainda aparecer branco, me avise se apareceu alguma mensagem de erro ap\'f3s ativar o display_errors!\par
+O erro ERR_TOO_MANY_REDIRECTS (Redirecionamento em excesso) \'e9 um cl\'e1ssico! Ele acontece porque voc\'ea criou um "loop": o servidor manda o navegador para uma p\'e1gina, e essa p\'e1gina manda de volta para o mesmo lugar, infinitamente.\par
+\par
+No seu caso, isso est\'e1 acontecendo porque agora voc\'ea tem duas coisas tentando fazer a mesma fun\'e7\'e3o:\par
+\par
+O VirtualHost: J\'e1 est\'e1 apontando a "raiz" diretamente para a pasta public.\par
+\par
+O C\'f3digo PHP ou .htaccess: Provavelmente ainda cont\'e9m uma instru\'e7\'e3o dizendo "se estiver na raiz, v\'e1 para site/public".\par
+\par
+Como o VirtualHost j\'e1 considera que a raiz \'c9 a public, quando o c\'f3digo manda ir para site/public, ele tenta procurar essa pasta dentro da pr\'f3pria public (onde ela n\'e3o existe) ou entra em conflito com as rotas do seu sistema.\par
+\par
+Como resolver agora:\par
+1. Limpe o arquivo .htaccess\par
+V\'e1 at\'e9 a pasta C:/xampp/htdocs/Sistema-login/site/public/ e verifique se existe um arquivo .htaccess l\'e1. Se houver alguma linha de RewriteRule que mencione o caminho "site/public", remova-a. O VirtualHost j\'e1 fez esse trabalho para voc\'ea.\par
+\par
+2. Verifique o seu index.php (O principal culpado)\par
+Abra o arquivo C:/xampp/htdocs/Sistema-login/site/public/index.php.\par
+\par
+Existe algum comando header("Location: ...") l\'e1 dentro?\par
+\par
+Se o seu c\'f3digo verifica se o usu\'e1rio est\'e1 logado e o redireciona para uma p\'e1gina que, por sua vez, o redireciona de volta para o index, o loop acontece.\par
+\par
+3. Remova arquivos duplicados na raiz\par
+Se voc\'ea criou aquele index.php na pasta C:/xampp/htdocs/Sistema-login/ (a pasta pai da site), apague-o ou mude o nome dele para index_backup.php. Com o VirtualHost configurado para a public, esse arquivo de fora n\'e3o deve mais ser usado.\par
+\par
+Por que o erro aparece?\par
+Imagine o di\'e1logo:\par
+\par
+Navegador: "Apache, me d\'e1 a p\'e1gina inicial de ravenismo.test."\par
+\par
+Apache (VirtualHost): "Ok, a inicial \'e9 o que est\'e1 em site/public/index.php."\par
+\par
+Seu C\'f3digo (index.php): "Opa, voc\'ea acessou a raiz? Ent\'e3o v\'e1 para site/public/index.php!"\par
+\par
+Navegador: "U\'e9, mas eu acabei de vir de l\'e1..." (e tenta de novo at\'e9 travar).\par
+\par
+Teste r\'e1pido para confirmar:\par
+Para ter certeza que o VirtualHost est\'e1 certo e o problema \'e9 o seu c\'f3digo PHP:\par
+\par
+Renomeie seu index.php atual para index_original.php.\par
+\par
+Crie um novo index.php vazio apenas com: <?php echo "Agora sim!"; ?>.\par
+\par
+Atualize o navegador. Se aparecer "Agora sim!", o erro est\'e1 em alguma l\'f3gica de redirecionamento dentro do seu c\'f3digo original.\par
+\par
+Conseguiu identificar algum comando de redirecionamento (header Location) no seu arquivo index.php original?\par
+Boa not\'edcia! A segunda imagem confirma que o seu Virtual Host est\'e1 configurado perfeitamente. O Apache est\'e1 entregando o arquivo certo na URL {{\field{\*\fldinst{HYPERLINK http://ravenismo.test:8080 }}{\fldrslt{http://ravenismo.test:8080\ul0\cf0}}}}\f0\fs22 .\par
+\par
+O erro de Redirecionamento em excesso que voc\'ea viu na primeira imagem \'e9 causado por alguma linha de c\'f3digo dentro do seu arquivo index.php original.\par
+\par
+Como consertar o seu c\'f3digo:\par
+Provavelmente, o seu c\'f3digo antigo tentava "corrigir" a URL enviando o usu\'e1rio para uma subpasta. Agora que o Virtual Host j\'e1 come\'e7a dentro da public, esse redirecionamento virou um loop infinito.\par
+\par
+Siga estes passos:\par
+\par
+Abra o seu arquivo index.php original (aquele que voc\'ea renomeou).\par
+\par
+Procure por header('Location: ...'). Se voc\'ea encontrar algo como:\par
+\par
+header('Location: site/public/index.php');\par
+\par
+header('Location: public/index.php');\par
+\par
+Apague essas linhas ou comente-as (coloque // na frente).\par
+\par
+Ajuste os caminhos (Paths): Se o seu c\'f3digo usa require ou include para buscar arquivos que est\'e3o "fora" da pasta public (como pastas de configura\'e7\'e3o ou banco de dados), voc\'ea precisar\'e1 ajustar os pontos.\par
+\par
+Antes: require '../../vendor/autoload.php';\par
+\par
+Agora: Talvez precise de um ../ a menos ou a mais, dependendo de onde o arquivo est\'e1 em rela\'e7\'e3o \'e0 public.\par
+\par
+Verifique tamb\'e9m o .htaccess interno\par
+Se n\'e3o houver nada no PHP, v\'e1 na pasta site/public/ e veja se existe um .htaccess l\'e1. Se ele contiver algo como: RewriteRule ^(.*)$ site/public/index.php [L] Mude para: RewriteRule ^(.*)$ index.php [L] (Pois ele j\'e1 est\'e1 na pasta certa agora).\par
+\par
+Resumo da \'f3pera:\par
+O "esqueleto" (Apache/VHost) est\'e1 pronto e funcionando. O problema agora \'e9 o "inquilino" (seu c\'f3digo PHP) que est\'e1 tentando se mudar para uma casa onde ele j\'e1 mora.\par
+\par
+Quer colar o conte\'fado do seu index.php original aqui para eu te ajudar a identificar qual linha est\'e1 causando o loop?\par
+index_backup.php: <!-- index.php -->\par
+\par
+\~ \~ \~<!-- >>>>>>>>>>>>>>>>>>>>>>>>>: LOGIN SEGURO - TRAVA ------------> <?php require_once '../data/user.php'; ?>\par
+\tab  <!-- ### Por que usar `require_once` em vez de `include`?\par
+\~ \~ \~<!-- * **`include`**: Se o arquivo `user.php` sumir por algum erro, o site mostra um aviso mas continua carregando (perigoso!). -->\par
+\~ \~ \~<!-- * **`require_once`**: Se o arquivo de seguran\'e7a n\'e3o for encontrado, ele trava tudo e d\'e1 um erro fatal. Para seguran\'e7a, o `require` \'e9 sempre o "xerife" mais rigoroso. -->\tab  \tab\~\par
+\tab  <!-- Prepara os dados do menu (Nome e Foto): -->\par
+\tab  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>: USU\'c1RIO MENU --------------------> <?php require_once '../data/user_menu.php'; ?>\par
+\tab\~\par
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">\par
+<style type="text/css">\par
+\par
+</style>\par
+<head>\par
+\tab <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\par
+\tab <meta name="description" content="Ol\'e1" />\par
+\tab <meta name="keywords" content="httrack, HTTRACK, HTTrack, winhttrack, WINHTTRACK, WinHTTrack, offline browser,\~\par
+\tab web mirror utility, aspirateur web, surf offline, web capture, www mirror utility, browse offline, local\~ site\~\par
+\tab builder, website mirroring, aspirateur www, internet grabber, capture de site web, internet tool, hors connexion,\~\par
+\tab unix, dos, windows 95, windows 98, solaris, ibm580, AIX 4.0, HTS, HTGet, web aspirator, web aspirateur, libre,\~\par
+\tab GPL, GNU, free software" />\par
+\tab <title>RV Project Inc</title>\par
+\tab\par
+\~ \~ \~<!-- >>>>>>>>>>>>>>>>>>>>>>>>>: TEMPLATE\~ S T Y L E -------> <link rel="stylesheet" href="../css/template.css">\par
+\~ \~ \~<!-- >>>>>>>>>>>>>>>>>>>>>>>>>: MENU\~ S T Y L E -----------> <link rel="stylesheet" href="../css/menu.css">\par
+\tab\par
+\tab <style type="text/css">\par
+\tab\par
+\~ \~ </style>\par
+\tab\par
+\tab <script>\tab\par
+\tab\par
+\tab </script>\par
+\par
+</head>\par
+\par
+<body>\par
+\par
+\~ \~<!-- ==================== Come\'e7o da Tabela do Geral ==================== -->\par
+\par
+<table width="76%" border="0" align="center" cellspacing="0" cellpadding="3" class="tableWidth">\par
+\tab <tr>\par
+\tab <td id="subTitle">R E C U R S O S</td>\par
+\tab </tr>\par
+</table>\par
+<table width="76%" border="0" align="center" cellspacing="0" cellpadding="0" class="tableWidth">\par
+<tr class="blak">\par
+<td>\par
+\tab <table width="100%" border="0" align="center" cellspacing="1" cellpadding="0">\par
+\tab <tr>\par
+\tab <td colspan="6">\~\par
+\tab\tab <table width="100%" border="0" align="center" cellspacing="0" cellpadding="10">\par
+\tab\tab <tr>\~\par
+\tab\tab <td id="pageContent_indice">\~\par
+\tab\tab\par
+<h1 ALIGN=Center><font color="#fff">\'cdndice de projetos e repositorios dispon\'edveis:</font></H1>\par
+\par
+\~ \~<!-- ==================== Come\'e7o da Tabela do Indice ==================== -->\~\par
+\~ \~\par
+<div style="\par
+\~ \~ \~display: flex;\par
+\tab  flex-direction: row;\par
+\tab  float: left;\~\par
+\~ \~ \~Padding: 20px;\tab\~\par
+">\par
+<table border="0" width="100%" cellspacing="1" cellpadding="0">\par
+\~ \~ <tr>\par
+\~ \~ \~ \~ <td>\par
+\~ \~ \~ \~ \~ \~ <div style="\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-image: url('red-banner-bg.png');\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-size: 100% 100%;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-repeat: no-repeat;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ width: 200px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ height: 75px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ display: flex;\~ \~ \~ \~ \~ /* Ativa o modo flexbox */\par
+\~ \~ \~ \~ \~ \~ \~ \~ align-items: center;\~ \~ /* Centraliza verticalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ justify-content: center; /* Centraliza horizontalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ padding-left: 20px;\~ \~ \~/* Ajuste esse valor para o texto n\'e3o bater na borda vermelha da esquerda */\par
+\~ \~ \~ \~ \~ \~ \~ \~ box-sizing: border-box;\par
+\~ \~ \~ \~ \~ \~ ">\par
+\~ \~ \~ \~ \~ \~ \~ \~ <span style="color: white; font-weight: bold; font-size: 14px;">\par
+\~ \~ \~ \~ \~ \~ \~ \~ \~ \~ &middot; <a href="../rv_project_inc/posts.php" style="color: #4B4646; text-decoration: none;">Ravenismo</a>\par
+\~ \~ \~ \~ \~ \~ \~ \~ </span>\par
+\~ \~ \~ \~ \~ \~ </div>\par
+\~ \~ \~ \~ </td>\par
+\~ \~ </tr>\par
+</table>\par
+<table border="0" width="100%" cellspacing="1" cellpadding="0">\par
+\~ \~ <tr>\par
+\~ \~ \~ \~ <td>\par
+\~ \~ \~ \~ \~ \~ <div style="\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-image: url('red-banner-bg.png');\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-size: 100% 100%;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-repeat: no-repeat;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ width: 200px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ height: 75px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ display: flex;\~ \~ \~ \~ \~ /* Ativa o modo flexbox */\par
+\~ \~ \~ \~ \~ \~ \~ \~ align-items: center;\~ \~ /* Centraliza verticalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ justify-content: center; /* Centraliza horizontalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ padding-left: 20px;\~ \~ \~/* Ajuste esse valor para o texto n\'e3o bater na borda vermelha da esquerda */\par
+\~ \~ \~ \~ \~ \~ \~ \~ box-sizing: border-box;\par
+\~ \~ \~ \~ \~ \~ ">\par
+\~ \~ \~ \~ \~ \~ \~ \~ <span style="color: white; font-weight: bold; font-size: 14px;">\par
+\~ \~ \~ \~ \~ \~ \~ \~ \~ \~ &middot; <a href="../rv_project_inc/posts.php" style="color: #4B4646; text-decoration: none;">RV Project Inc</a>\par
+\~ \~ \~ \~ \~ \~ \~ \~ </span>\par
+\~ \~ \~ \~ \~ \~ </div>\par
+\~ \~ \~ \~ </td>\par
+\~ \~ </tr>\par
+</table>\par
+<table border="0" width="100%" cellspacing="1" cellpadding="0">\par
+\~ \~ <tr>\par
+\~ \~ \~ \~ <td>\par
+\~ \~ \~ \~ \~ \~ <div style="\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-image: url('red-banner-bg.png');\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-size: 100% 100%;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-repeat: no-repeat;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ width: 200px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ height: 75px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ display: flex;\~ \~ \~ \~ \~ /* Ativa o modo flexbox */\par
+\~ \~ \~ \~ \~ \~ \~ \~ align-items: center;\~ \~ /* Centraliza verticalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ justify-content: center; /* Centraliza horizontalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ padding-left: 20px;\~ \~ \~/* Ajuste esse valor para o texto n\'e3o bater na borda vermelha da esquerda */\par
+\~ \~ \~ \~ \~ \~ \~ \~ box-sizing: border-box;\par
+\~ \~ \~ \~ \~ \~ ">\par
+\~ \~ \~ \~ \~ \~ \~ \~ <span style="color: white; font-weight: bold; font-size: 14px;">\par
+\~ \~ \~ \~ \~ \~ \~ \~ \~ \~ &middot; <a href="../rv_project_inc/posts.php" style="color: #4B4646; text-decoration: none;">Marketing</a>\par
+\~ \~ \~ \~ \~ \~ \~ \~ </span>\par
+\~ \~ \~ \~ \~ \~ </div>\par
+\~ \~ \~ \~ </td>\par
+\~ \~ </tr>\par
+</table>\par
+<table border="0" width="100%" cellspacing="1" cellpadding="0">\par
+\~ \~ <tr>\par
+\~ \~ \~ \~ <td>\par
+\~ \~ \~ \~ \~ \~ <div style="\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-image: url('red-banner-bg.png');\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-size: 100% 100%;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ background-repeat: no-repeat;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ width: 200px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ height: 75px;\~\par
+\~ \~ \~ \~ \~ \~ \~ \~ display: flex;\~ \~ \~ \~ \~ /* Ativa o modo flexbox */\par
+\~ \~ \~ \~ \~ \~ \~ \~ align-items: center;\~ \~ /* Centraliza verticalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ justify-content: center; /* Centraliza horizontalmente */\par
+\~ \~ \~ \~ \~ \~ \~ \~ padding-left: 20px;\~ \~ \~/* Ajuste esse valor para o texto n\'e3o bater na borda vermelha da esquerda */\par
+\~ \~ \~ \~ \~ \~ \~ \~ box-sizing: border-box;\par
+\~ \~ \~ \~ \~ \~ ">\par
+\~ \~ \~ \~ \~ \~ \~ \~ <span style="color: white; font-weight: bold; font-size: 14px;">\par
+\~ \~ \~ \~ \~ \~ \~ \~ \~ \~ &middot; <a href="../rv_project_inc/posts.php" style="color: #4B4646; text-decoration: none;">Sociedade</a>\par
+\~ \~ \~ \~ \~ \~ \~ \~ </span>\par
+\~ \~ \~ \~ \~ \~ </div>\par
+\~ \~ \~ \~ </td>\par
+\~ \~ </tr>\par
+</table>\par
+</div>\tab\par
+\par
+\~ \~ <!-- ==================== Fim da Tabela do Indice ==================== -->\par
+\tab\par
+\tab <BR>\par
+\tab <H6 ALIGN="RIGHT">\par
+\~ \~ \~ \~ \~<I><font color="black">Projeto criado pelo <font color="red">Lorde Raveno</font> [2025]</font></I>\par
+\tab </H6>\par
+\tab\tab </td>\par
+\tab\tab </tr>\par
+\tab\tab </table>\par
+\tab </td>\par
+\tab </tr>\par
+\tab </table>\par
+</td>\par
+</tr>\par
+</table>\par
+\par
+<table width="76%" border="0" align="center" valign="bottom" cellspacing="0" cellpadding="0">\par
+\tab <tr>\par
+\tab <td id="footer"><small><font color="white">&copy; 2025 Web Design: Lorde Raveno.</font></small></td>\par
+\tab </tr>\par
+</table>\par
+\par
+\~ \~ \~<!-- ==================== Fim da Tabela do Geral ==================== -->\par
+\tab\~\par
+\tab  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>: P A G I N A C A O --> <div id="pagination-container"></div>\par
+\tab  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>: H E A D E R --------> <script src="../js/header.js"></script>\par
+\~ \~ \~<!-- >>>>>>>>>>>>>>>>>>>>>>>>>: P A G I N A C A O --> <script src="pagination.js"></script>\par
+\~ \~ \~<!-- >>>>>>>>>>>>>>>>>>>>>>>>>: F O O T E R --------> <script src="../js/footer.js"></script>\par
+\par
+</body>\par
+\par
+</html>\par
+O mist\'e9rio da tela branca e do loop foi resolvido! Analisando o seu index_backup.php, o problema n\'e3o \'e9 um comando header, mas sim erros de caminho (paths) que fazem o PHP "morrer" antes de carregar a p\'e1gina.\par
+\par
+Como agora o seu site come\'e7a dentro da pasta public, os caminhos que usam ../ mudaram de refer\'eancia.\par
+\par
+1. O erro de Trava Fatal (require_once)\par
+No topo do seu arquivo, voc\'ea tem:\par
+\par
+PHP\par
+\par
+<?php require_once '../data/user.php'; ?>\par
+<?php require_once '../data/user_menu.php'; ?>\par
+Se esses arquivos estiverem na estrutura: Sistema-login/site/data/user.php, o caminho ../data/user.php est\'e1 correto. Por\'e9m, se eles estiverem em um n\'edvel acima ou se o PHP n\'e3o tiver permiss\'e3o de leitura na pasta superior, o require_once trava o carregamento (por isso a tela branca ou o erro de redirecionamento se houver um tratador de erros).\par
+\par
+2. O erro de CSS e JS (Caminhos Quebrados)\par
+Notei que voc\'ea chama seus estilos e scripts assim:\par
+\par
+<link rel="stylesheet" href="../css/template.css">\par
+\par
+<script src="../js/header.js"></script>\par
+\par
+O problema aqui: O navegador (browser) n\'e3o consegue sair da pasta public usando ../ por quest\'f5es de seguran\'e7a do servidor. Para o navegador, a pasta public \'e9 a raiz (/).\par
+\par
+Como corrigir seu index.php para o novo Virtual Host:\par
+Substitua os caminhos relativos por caminhos que o navegador entenda a partir da raiz. Tente esta estrutura:\par
+\par
+No PHP (Caminhos de Servidor):\par
+Se a sua pasta data estiver dentro de site/, o ../ continua valendo para o PHP sair de public e entrar em data.\par
+\par
+No HTML (Caminhos de Navegador):\par
+Se as pastas css e js estiverem dentro da public, remova o ../. Se estiverem fora da public, voc\'ea ter\'e1 um problema: o navegador n\'e3o consegue acessar arquivos fora da DocumentRoot.\par
+\par
+A solu\'e7\'e3o recomendada \'e9 mover as pastas css, js e images para dentro da pasta public.\par
+\par
+Se voc\'ea mover as pastas para dentro da public, seu c\'f3digo deve ficar assim:\par
+\par
+HTML\par
+\par
+<link rel="stylesheet" href="css/template.css">\par
+<script src="js/header.js"></script>\par
+<img src="red-banner-bg.png">\par
+Por que o "Too Many Redirects" aconteceu?\par
+Muito provavelmente, o arquivo ../data/user.php detecta que voc\'ea n\'e3o est\'e1 logado e tenta te enviar para uma p\'e1gina de login. Como o caminho da p\'e1gina de login tamb\'e9m pode estar quebrado devido \'e0 nova estrutura do Virtual Host, ele entra em loop tentando te redirecionar para um lugar que ele acha que \'e9 o correto, mas o Apache o joga de volta.\par
+\par
+Pr\'f3ximo Passo sugerido:\par
+Volte o nome do arquivo para index.php.\par
+\par
+Verifique se as pastas css, js e as imagens (como red-banner-bg.png) est\'e3o dentro da pasta public.\par
+\par
+Se n\'e3o estiverem, mova-as para l\'e1.\par
+\par
+Tente acessar {{\field{\*\fldinst{HYPERLINK http://ravenismo.test:8080 }}{\fldrslt{http://ravenismo.test:8080\ul0\cf0}}}}\f0\fs22  novamente.\par
+\par
+Gostaria que eu te ajudasse a ajustar as pastas de lugar para que o site carregue o visual corretamente?\par
+}
+ 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Responsividade Crítica | Korvado</title>
+    <style>
+        /* CSS GLOBAL - ESTILO EXCLUSIVO ACCESS PANEL */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #020202;
+            --green: #00ff41;
+            --cyan: #00f3ff;
+            --blue: #4d70db;
+            --card: #0d0d0d;
+            --text: #b0b0b0;
+            --code-bg: #000;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container-master {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .hacker-header {
+            grid-column: 1 / -1;
+            padding: 20px;
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--green);
+            border-right: 2px solid var(--blue);
+            border-left: 2px solid var(--blue);
+            background: linear-gradient(90deg, #000, rgba(0, 243, 255, 0.05));
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* CARD DE DOCUMENTAÇÃO */
+        .lab-card {
+            background: var(--card);
+            border: 1px solid #1a1a1a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            will-change: transform; [cite: 2026-02-05]
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+
+        h2 { color: var(--cyan); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* DIDÁTICA E CÓDIGO */
+        .didatica { font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px; }
+        .highlight { color: var(--green); font-weight: bold; }
+
+        pre {
+            background: var(--code-bg);
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 3px solid var(--blue);
+            font-family: 'Consolas', monospace;
+            font-size: 0.8rem;
+            color: #dcdcaa;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+
+        /* TOGGLE SYSTEM */
+        .switch { width: 40px; height: 20px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background: #333; transition: .4s; border: 1px solid var(--blue);
+        }
+        .slider:before {
+            content: ""; position: absolute; height: 12px; width: 12px;
+            left: 3px; bottom: 3px; background: #fff; transition: .4s;
+        }
+        input:checked + .slider { background: rgba(0, 255, 65, 0.2); border-color: var(--green); }
+        input:checked + .slider:before { transform: translateX(20px); background: var(--green); box-shadow: 0 0 10px var(--green); }
+
+        /* SIMULADOR INFRAME (MOBILE VIEW) */
+        .preview-window {
+            width: 100%;
+            height: 250px;
+            background: #000;
+            border: 1px dashed #333;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mock-page {
+            width: 300px; /* Simula tela mobile */
+            height: 200px;
+            background: #111;
+            border: 1px solid #222;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .table-sim {
+            width: 60%; /* Estado inicial largo */
+            height: 80%;
+            margin: 10px auto;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: var(--cyan);
+            transition: 0.5s;
+        }
+
+        /* ESTADOS ATIVOS (PRINCIPIO.CSS) */
+        .active-mobile .table-sim {
+            width: 95% !important; /* Adaptado do seu CSS */
+            background: rgba(0, 255, 65, 0.1);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .active-padding .mock-page {
+            padding: 10px !important; /* Adaptado do seu CSS */
+        }
+        
+        .padding-indicator {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            border: 0px solid var(--green); transition: 0.3s; pointer-events: none;
+        }
+        .active-padding .padding-indicator { border-width: 10px; opacity: 0.3; }
+
+        @media (max-width: 850px) { .container-master { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container-master">
+    <header class="hacker-header">
+        <h1 style="color:#fff; letter-spacing: 3px; font-size: 1.3rem;">MOBILE_RESPONSIVE_LAB v2.0</h1>
+    </header>
+
+    <div class="lab-card">
+        <div class="card-header">
+            <h2>01. TableWidth Adaptation</h2>
+            <label class="switch"><input type="checkbox" onchange="tg('v1','active-mobile')"><span class="slider"></span></label>
+        </div>
+        <div class="didatica">
+            O seletor <span class="highlight">.tableWidth</span> garante que, em telas menores que 800px, a tabela utilize 95% do espaço disponível, evitando que o conteúdo fique "espremido" ou transborde.
+        </div>
+        <pre>@media (max-width: 800px) {
+    .tableWidth {
+        width: 95% !important;
+    }
+}</pre>
+        <div class="preview-window">
+            <div id="v1" class="mock-page">
+                <div class="table-sim">TABLE_DATA</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lab-card">
+        <div class="card-header">
+            <h2>02. PageContent Optimization</h2>
+            <label class="switch"><input type="checkbox" onchange="tg('v2','active-padding')"><span class="slider"></span></label>
+        </div>
+        <div class="didatica">
+            O ajuste no <span class="highlight">#pageContent</span> reduz o recuo interno para 10px. Isso maximiza a área útil de leitura em smartphones, onde cada pixel horizontal é crítico.
+        </div>
+        <pre>@media (max-width: 800px) {
+    #pageContent {
+        padding: 10px !important;
+    }
+}</pre>
+        <div class="preview-window">
+            <div id="v2" class="mock-page">
+                <div class="padding-indicator"></div>
+                <div style="font-size:0.5rem; padding: 5px; color:#555;">TEXTO_EXEMPLO...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lab-card" style="grid-column: 1 / -1; border-left: 4px solid var(--green);">
+        <h2 style="color: var(--green);">Por que usar !important neste contexto?</h2>
+        <div class="didatica">
+            Em sistemas como o <strong>my_dashboard.php</strong>, muitos estilos podem vir herdados de bibliotecas externas ou do núcleo do Sistema-login. O uso do <code>!important</code> dentro da sua Media Query no <code>principio.css</code> garante que a sua regra de soberania digital prevaleça sobre qualquer estilo padrão quando o dispositivo for detectado como mobile.
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function tg(id, cls) { document.getElementById(id).classList.toggle(cls); }
+</script>
+
+</body>
+</html>

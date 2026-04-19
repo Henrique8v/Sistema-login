@@ -1,0 +1,11 @@
+NOTAS IMPORTANTES E PROTOCOLOS - LORDE RAVENO
+===========================================================================
+- CÓDIGO FONTE: Nunca simplificar defs existentes durante correções.
+- SILENT MODE: Scripts de monitoramento devem rodar com CREATE_NO_WINDOW.
+- LIMPEZA DE MÍDIA: O script 'limpeza_arquivos.py' é irreversível. Certifique-se
+  de que fotos importantes estão na lista 'PROTEGIDOS'.
+- PERFORMANCE DE VÍDEO: O mute global deve ser mantido como TRUE por padrão
+  para evitar poluição sonora no carregamento da timeline.
+- REPOSITÓRIO: O 'INSERT IGNORE' no repo_manager garante que edições manuais
+  no título da página via SQL não sejam sobrescritas pelo scanner.
+===========================================================================

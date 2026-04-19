@@ -1,0 +1,1 @@
+Logue sua Conta. Escolha seu projeto. Clone o Repositorio na Nuvem. Use o notepad++ como IDE. Faça um commit das mudanças com o Copilot. Depois faça um "Push" para atualizar o repositorio em Nuvem.

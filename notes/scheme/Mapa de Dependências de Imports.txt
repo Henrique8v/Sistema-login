@@ -1,0 +1,19 @@
+MAPA DE DEPENDÊNCIAS DE IMPORTS - RV PROJECT
+===========================================================================
+BACKEND (PYTHON -> PHP/SQL):
+- mysql-connector-python: Necessário para limpeza_arquivos.py e banco de dados.
+- subprocess/os: Utilizados em ligar_rastros_silent.py para controle de processos.
+
+FRONTEND (JS -> PHP):
+- modal_post_atualizar.js -> visualizar_post.php (Busca dados do post).
+- search.js -> pesquisa_logica.php (Resultados de busca em tempo real).
+- notificacoes.js -> arrastar_notificacoes.php (Persistência de exclusão).
+
+COMPLEMENTOS JS:
+- modal_post_data.js: Fornece formatarDataRedeSocial() para todos os modais.
+- video_post.js: Depende de IntersectionObserver para controle de performance.
+- GIPHY API: Chave dc6zaTOxFJmzC vinculada em modal_post_midia.js.
+
+BINÁRIOS:
+- analisador.cpp: Requer <sys/stat.h> para leitura física de arquivos.
+===========================================================================

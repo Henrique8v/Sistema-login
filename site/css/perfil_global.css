@@ -1,0 +1,309 @@
+
+.aviso-privado {
+    text-align: center; padding: 60px 20px;
+    background: rgba(0,0,0,0.1); border: 1px dashed #444; border-radius: 8px;
+    padding: 40px;
+    border: 1px dashed #333;
+    will-change: transform; /* Lembra da nossa regra? */
+    touch-action: pan-y;
+}
+
+body {
+    color: inherit;
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+/* Quando o Modo Claro estiver ativo *//* Cor padrão (Escuro) */
+body.modo-claro {
+    background-color: #f4f4f4 !important;
+    color: #1a1a1a !important;
+}
+
+/* Ajuste para os containers do perfil ficarem visíveis no claro */
+body.modo-claro .container, 
+body.modo-claro .perfil-header {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: inherit;
+}
+
+a {
+      text-decoration: none;
+  }
+  
+.public_h3 {
+	color: #F91313; 
+	text-transform: uppercase; 
+	font-size: 14px; 
+	letter-spacing: 2px; 
+	text-align: center; 
+	border-top: 1px solid #333; 
+	padding-top: 20px; 
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	align-item: center;
+	will-change: transform;
+}	
+  
+/* 1. Base Desktop (Seu código original) */
+.perfil-container {
+    max-width: 1150px !important;
+    width: 95%;
+    margin: 30px auto;
+    background: var(--bg-container);
+    padding: 25px;
+    border-radius: 8px;
+    border: 0px solid #333;
+    display: flex; /* Adicionado para garantir o alinhamento dos itens */
+    flex-direction: column;
+    align-items: flex-start;
+    will-change: transform; /* Performance RV */
+}
+
+/* 2. Adaptação para Celulares (Smartphones Pequenos e Médios) */
+@media (max-width: 800px) {
+    .perfil-container {
+        width: 100%;       /* Ocupa a largura total para ganhar espaço */
+        margin: 10px 0;    /* Reduz a margem superior e remove a lateral */
+        padding: 15px;     /* Reduz o padding interno para não esmagar o conteúdo */
+        border-radius: 0;  /* Opcional: remover arredondamento no mobile dá um ar mais "full screen" */
+    }
+}
+
+/* Estilo Base (Desktop) */
+.perfil-foto {
+    background: linear-gradient(to bottom, #3d4450, #202326);
+    padding: 4px;
+    border: 1px solid #000;
+    flex-shrink: 0; /* Impede que a foto seja "esmagada" a zero */
+    will-change: transform;
+    
+    /* No Desktop, ela mantém o seu padrão */
+    width: 164px; 
+    height: 164px;
+}
+
+.perfil-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção da imagem */
+    display: block;
+}
+
+/* Responsividade para smartphones (Moto G One) */
+@media (max-width: 480px) {
+    /* Mantendo suas regras anteriores */
+    .menu-lateral-perfil, .perfil-topo {
+        width: 110px; /* Isso limita o topo, então a foto PRECISA diminuir */
+		min-width: 90px; 
+        gap: 5px;
+        /* ADICIONADO: Margem de segurança para os botões não colarem no browser */
+        margin-right: 10px; 
+        padding-right: 5px;
+    }
+
+    .perfil-foto {
+        /* No smartphone, a imagem precisa ser menor para não expulsar a Bio e o Menu */
+        width: 85px !important;  
+        height: 85px !important;
+        min-width: 85px !important; /* Garante que não fique menor que isso */
+        max-width: 85px !important;
+    }
+	
+    .btn-perfil {
+        /* Ajuste fino para os botões no mobile */
+        padding: 8px 5px !important;
+        font-size: 5px !important;
+        width: 100%;
+        box-sizing: border-box;
+		zoom: 0.8;
+    }	
+}
+
+/* Container Pai */
+.perfil-topo {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* Mantém tudo na mesma linha */
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    will-change: transform; /* Regra de performance RV */
+	z-index: 999999 !important; /* Eleva o contexto pai acima de tudo. 
+	Se tirar essa funcionalidade ou diminuir, o notificações irá ficar 
+	atrás dos elementos da div seguinte */ 
+}
+
+/* O elemento do meio (Bio/Info) deve ser flexível para o menu poder ir para a direita */
+.perfil-topo > div:nth-child(2) {
+    flex: 1; 
+    min-width: 0;
+}
+
+/* Menu Lateral à Direita */
+.menu-lateral-perfil {
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+    min-width: 100px; 
+    flex-shrink: 0; 
+    
+    /* MÁGICA: Empurra o menu para a DIREITA do container */
+    margin-left: auto; 
+    
+    text-align: right; 
+    will-change: transform; /* Performance RV [cite: 2026-02-05] */
+}
+
+/* 4. Ajuste para Tablets e Paisagem (800px) */
+@media (max-width: 800px) {
+    .perfil-container {
+        width: 98%; /* Quase total, mas com um pequeno respiro lateral */
+        padding: 20px 15px; /* Reduz o padding interno para ganhar área útil */
+    }
+
+    .menu-lateral-perfil {
+        margin-right: 15px; /* Cria o distanciamento da borda direita do ecrã */
+        gap: 6px; /* Aperta levemente os botões para otimizar o espaço vertical */
+    }
+
+    .btn-perfil {
+        font-size: 11px !important;		
+	    padding: 10px !important; 
+	    padding: 8px 35px !important;
+        font-size: 11px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        touch-action: manipulation !important; 
+    }
+	
+	.card-post { 
+	    width: calc(50% - 5px); 
+	}
+	
+	.grid-posts { 
+        display: flex;
+        flex-wrap: wrap;       /* Permite quebrar linha */
+        justify-content: flex-start; /* Alinha sempre à esquerda */
+        gap: 10px;             /* Espaçamento entre as fotos */
+        width: 100%;
+        margin-top: 20px;
+		zoom: 0.8;
+    }
+}
+
+/* RESPONSIVIDADE: No celular, se ficar muito pequeno com 3, muda para 2 */
+@media (max-width: 480px) {
+    .card-post {
+        width: calc(50% - 5px); /* 2 colunas no mobile */
+    }	
+	.perfil-header-box { 
+	    flex-direction: column; 
+		text-align: center; 
+    }
+    .card-post { 
+	    width: calc(50% - 5px); 
+	}
+	.grid-posts { 
+        display: flex;
+        flex-wrap: wrap;       /* Permite quebrar linha */
+        justify-content: flex-start; /* Alinha sempre à esquerda */
+        gap: 10px;             /* Espaçamento entre as fotos */
+        width: 100%;
+        margin-top: 20px;
+		zoom: 0.2;
+		margin-right: 115px;
+    }     	
+}
+
+/* O CONTAINER PAI */
+.grid-posts { 
+    display: flex;
+    flex-wrap: wrap;       /* Permite quebrar linha */
+    justify-content: flex-start; /* Alinha sempre à esquerda */
+    gap: 10px;             /* Espaçamento entre as fotos */
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* O CARD DO POST (A TRAVA DOS 3x3) */
+.card-post {
+    /* Cálculo Matemático: 
+       Dividimos 100% por 3 = 33.33%
+       Subtraímos um pouco mais que o gap para garantir que caibam 3 na linha sem erro de pixel 
+    */
+    width: calc(33.33% - 7px); 
+    aspect-ratio: 1 / 1;    /* Mantém o quadrado que você gostou */
+    background: var(--bg-container);
+    border: 1px solid #222;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    cursor: pointer;
+    box-sizing: border-box; /* Garante que a borda não aumente o tamanho do card */
+}
+
+/* Ajuste da Imagem dentro do quadrado */
+.card-post img, .card-post video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a foto preencher o quadrado sem esticar */
+    display: block;
+	will-change: transform;
+    transition: transform 0.3s ease;
+}	
+
+.card-post:hover { 
+    transform: scale(1.02); 
+    border-color: #F91313; 
+    z-index: 10;
+}
+
+.card-post:hover img { 
+    transform: scale(1.05); 
+}
+
+/* 2. O BOTÃO DE COMENTAR (Estilo exclusivo Fase 3) */
+.btn-comentar-vermelho {
+    background: #F91313 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    transition: 0.3s !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    text-decoration: none !important;
+    display: block;
+}
+
+.btn-comentar-vermelho:hover {
+    filter: brightness(1.3) !important;
+    transform: scale(1.03) !important;
+    box-shadow: 0 0 15px rgba(249, 19, 19, 0.5);
+}
+
+.btn-perfil {
+	background: #343a40; 
+	color: white; 
+	padding: 10px; 
+	text-align: center; 
+	border-radius: 4px; 
+	text-decoration: none; 
+	font-size: 13px;
+	padding: 8px 35px;
+    font-size: 11px;
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: manipulation; 
+}
+
+.btn-perfil:hover {
+	color: white important!;
+	background-color: red important!;
+}

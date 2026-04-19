@@ -1,0 +1,12 @@
+A pasta classes (frequentemente chamada também de Models, Entities ou DAO em projetos maiores) em uma estrutura PHP serve para organizar e armazenar classes de orientação a objetos. Em relação ao banco de dados, sua principal função é abstrair a lógica de banco de dados e modelar os dados, separando o código SQL da lógica de visualização ou controle. 
+Aqui estão as principais funções dessa pasta no contexto PHP + Banco de Dados:
+Organização e Reutilização: Ao invés de espalhar comandos mysqli_query ou PDO em vários arquivos .php, você cria classes (ex: Usuario.php, Conexao.php) que podem ser reutilizadas em toda a aplicação.
+Abstração do Banco de Dados (DAO/Model): Criação de classes DAO (Data Access Object) para encapsular operações CRUD (Criar, Ler, Atualizar, Deletar). Isso significa que, se você precisar mudar o banco de dados de MySQL para PostgreSQL, por exemplo, precisará alterar apenas as classes na pasta, e não o sistema inteiro.
+Encapsulamento da Conexão: A pasta geralmente contém uma classe de conexão (geralmente usando PDO) para gerenciar as credenciais do banco de dados de forma segura, reaproveitando a mesma conexão em diferentes requisições.
+Mapeamento Objeto-Relacional (ORM): Representar tabelas do banco de dados como objetos PHP. Por exemplo, uma tabela produtos no banco de dados se transforma em uma classe Produto.php na pasta classes, com atributos como $nome, $preco e métodos como salvar() ou buscar().
+Segurança (Prevenção de SQL Injection): As classes podem conter métodos seguros que usam prepared statements (consultas preparadas) do PDO ou MySQLi, protegendo sua aplicação contra injeção de SQL. 
+Exemplo de Estrutura:
+/classes
+Conexao.php (Gerencia a conexão com o banco)
+UsuarioDAO.php (Contém métodos: inserir(), listar(), atualizar())
+Usuario.php (Representa o objeto Usuário com dados) 

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Architecture | Brotherhood</title>
+    <style>
+        /* ESTILO EXCLUSIVO ACCESS PANEL [cite: 2026-03-05] */
+        :root {
+            --bg: #020202;
+            --green: #00ff41;
+            --cyan: #00f3ff;
+            --gray: #b0b0b0;
+            --card: #0d0d0d;
+            --blue-border: #4d70db;
+            --warning: #ffb700;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--gray);
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header-main {
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--green);
+            border-left: 2px solid var(--blue-border);
+            border-right: 2px solid var(--blue-border);
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(90deg, #000 0%, rgba(0, 243, 255, 0.05) 50%, #000 100%);
+            margin-bottom: 50px;
+        }
+
+        h1 { color: #fff; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-size: 1.6rem; }
+        h2 { color: var(--cyan); border-bottom: 1px solid #222; padding-bottom: 10px; margin-top: 40px; text-transform: uppercase; font-size: 1.2rem; }
+        h3 { color: var(--green); font-size: 1rem; margin-top: 25px; }
+
+        .article-card {
+            background: var(--card);
+            border: 1px solid #1a1a1a;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        code { font-family: 'Consolas', monospace; background: #000; color: var(--cyan); padding: 2px 6px; }
+        
+        pre {
+            background: #000;
+            padding: 20px;
+            border-left: 3px solid var(--green);
+            color: #dcdcaa;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .important-note {
+            background: rgba(0, 243, 255, 0.02);
+            border: 1px solid var(--blue-border);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-note {
+            background: rgba(255, 183, 0, 0.05);
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            color: #eee;
+        }
+
+        .port-tag {
+            background: #111;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        ul { list-style: none; padding: 0; }
+        ul li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        ul li::before { content: "»"; position: absolute; left: 0; color: var(--green); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-main">
+        <h1>Arquitetura de Dados & Redes</h1>
+        <p style="color: var(--cyan); font-size: 0.8rem; margin-top: 10px; letter-spacing: 2px;">SISTEMA-LOGIN: BACKEND REFORÇADO</p>
+    </header>
+
+    <div class="article-card">
+        <h2>1. Visão Geral do Ecossistema</h2>
+        <p>O <strong>Sistema-login</strong> opera sob o paradigma de <strong>Programação Orientada a Objetos (POO)</strong> e utiliza a camada de abstração <strong>PDO</strong> para garantir que as consultas SQL sejam imunes a <em>SQL Injection</em>.</p>
+        
+        <h3>Funcionalidades de Soberania:</h3>
+        <ul>
+            <li><strong>Validação de Unicidade:</strong> Verificação em tempo real de e-mails já existentes no banco.</li>
+            <li><strong>Área Restrita:</strong> Proteção de rota que exige token de sessão válido.</li>
+            <li><strong>Evolução do Hashing:</strong> Migração de <code>MD5</code> (limitado) para <code>VARCHAR(255)</code> visando suporte a algoritmos modernos como BCRYPT.</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>2. Configuração Crítica de Rede (XAMPP)</h2>
+        <p>Configuração de portas para evitar conflitos no ambiente Brotherhood:</p>
+        
+        <div style="display: flex; gap: 20px; margin: 20px 0;">
+            <div class="port-tag">Apache HTTP: 8080</div>
+            <div class="port-tag">Apache HTTPS: 4433</div>
+            <div class="port-tag">MySQL: 3306</div>
+        </div>
+
+        <div class="important-note">
+            <strong>Nota de Conexão:</strong> O PHP deve apontar explicitamente para <code>localhost:8080</code> no tráfego HTTP.
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>3. Estrutura de Iniciação SQL (Atualizada)</h2>
+        <p>Abaixo, a estrutura de tabela corrigida para suportar hashes de segurança longos e codificação internacional:</p>
+        <pre>
+CREATE DATABASE projeto_login;
+USE projeto_login;
+
+CREATE TABLE usuarios(
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30),
+    telefone VARCHAR(30),
+    email VARCHAR(40),
+    senha VARCHAR(255) NULL -- Expandido de 32 para 255 (UTF8MB4)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+        </pre>
+
+        <div class="warning-note">
+            <strong>LOG DE MANUTENÇÃO:</strong> Devido à alteração do campo <code>senha</code> de VARCHAR(32) para VARCHAR(255) e ajuste de Collation, todas as contas de teste criadas anteriormente foram <strong>expurgadas</strong> do banco. Foi necessário recriar os logins para garantir a integridade dos novos valores de hash.
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>4. Didática: Implementação PDO</h2>
+        <p>Exemplo de inserção segura utilizando o novo padrão de campo:</p>
+        <pre>
+// O VARCHAR(255) permite o uso de password_hash()
+$senha_segura = password_hash($senha_usuario, PASSWORD_DEFAULT);
+
+$sql = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:n, :e, :s)");
+$sql->bindValue(":n", $nome);
+$sql->bindValue(":e", $email);
+$sql->bindValue(":s", $senha_segura);
+$sql->execute();
+        </pre>
+    </div>
+	
+	<div class="article-card">
+        <h2>5. ATUALIZAÇÔES E EVOLUÇÂO</h2>
+        <p>Processos atualizados:</p>
+        <pre>
+Ao passar do tempo no projeto Sistema-login (sql projeto_login) desenvolvemos inumeras ferramentas, 
+protocolos e funcioanlidades acrescentando novas tabelas e colunas, incluindo também o uso de python 
+e c++. Portanto para que o sistema-login funcione como o esperado, use o backup do projeto_login.sql 
+na psta do projeto.
+        </pre>
+    </div>
+
+    <div style="text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; margin-top: 50px;">
+        KORVADO DATA MANAGEMENT | PROTECTED REPOSITORY
+    </div>
+</div>
+
+</body>
+</html>

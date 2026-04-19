@@ -1,0 +1,121 @@
+        /* Modernização Cyber-Red */
+        body {
+            background-color: #050505;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container-full {
+            width: 100%;
+            min-height: 100vh;
+            padding: 90px 20px 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sub-title-cyber {
+            color: #ff0000;
+            font-size: 0.9rem;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .main-title-cyber {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: clamp(10px, 2vw, 20px);
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
+
+        /* Grid de Postagens Moderno */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1400px;
+            margin-bottom: 50px;
+        }
+
+        /* Botão Neon para Postagens */
+        .post-card-neon {
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            border: 1px solid #1a1a1a;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform, box-shadow, border-color;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .post-card-neon:hover {
+            transform: scale(1.03);
+            border-color: #ff0000;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.3), inset 0 0 10px rgba(255, 0, 0, 0.1);
+        }
+
+        .post-card-neon span {
+            color: #F0AFAF;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        /* Paginação Neon */
+        .pagination-cyber {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .pagination-cyber a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+        }
+
+        .pagination-cyber a:hover, .pagination-cyber a.active {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            border-bottom: 1px solid #ff0000;
+        }
+
+        .footer-credits {
+            margin-top: auto;
+            width: 100%;
+            text-align: right;
+            padding: 40px;
+            color: #333;
+            font-size: 0.8rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .main-title-cyber { font-size: 1.8rem; letter-spacing: 8px; }
+            .posts-grid { grid-template-columns: 1fr; }
+        }

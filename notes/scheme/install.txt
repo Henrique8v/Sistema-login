@@ -1,0 +1,59 @@
+ 
+Sistema-login: Recursos Necessários
+│
+├── Cloud
+│   ├── Cloudflared-windows-amd64 (Opcional)
+│   ├── Ngrok Cli (Opcional) 
+│   │   ├── Túnel reverso que expõe servidores locais, localhost, à internet, criando uma URL pública.
+│   │   ├── Ex: https://xyz.ngrok-free.app, para acessar sua máquina
+│   │   └── Precisa de Authtoken (ID/chave), instalação: ngrok config add-authtoken <SEU_TOKEN>
+│   ├── Pinggy (Essencial) 
+│   │   ├── Ferramenta de túnel reverso que serve para expor serviços locais (localhost) à internet de forma rápida e segura.    
+│   │   └── Exemplo de Acesso: ssh -p 443 -R0:localhost:3000 a.pinggy.io          
+│   └── FRPC (Fast Reverse Proxy Client) 
+│       ├── 1. Token de Autenticação (Mais Comum) 
+│       │   ├── frpc.toml:
+│       │   ├── auth.method = "token"
+│       │   ├── auth.token = "sua_chave_secreta"
+│       │   └── Onde fica: Geralmente no bloco [common] ou sob a seção auth (versões 0.52+)
+│       ├── 2. OIDC (Open ID Connect)
+│       │   ├── O que é: Um método mais avançado usado para autenticação baseada em provedores de identidade.
+│       │   └── Como usar: Requer configurar auth.method = "oidc" e preencher os detalhes do provedor no frpc.toml
+│       └── Para que o frpc conecte, você precisa, no mínimo:
+│           ├── 1. serverAddr: IP do servidor frps.
+│           ├── 3. serverPort: Porta de bind do servidor frps.
+│           ├── 4. auth.token: A senha compartilhada.
+│           ├── 5. Definição de pelo menos um proxy (ex: [[proxies]])
+│           └── nota: use token para evitar que terceiros utilizem seu servidor frp
+│
+├── Code::blocks-25.03mingw (caso houver suporte migre para a versão mais recente)
+│   └── G++ (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r3) 14.2.0
+│       ├── Clang version 19.1.7
+│       │   ├── Target: x86_64-w64-windows-gnu
+│       │   ├── Thread model: posix
+│       │   └── Installed Dir: C:/Program Files/CodeBlocks/MinGW/bin
+│       ├── x86_64-w64-mingw32
+│       │   └── Path: C:\Program Files\CodeBlocks\MinGW\bin
+│       └── i686-w64-mingw32
+│
+│           └── Path: C:\Program Files\CodeBlocks\MinGW32\bin
+│
+├── Notepad++ (Essencial para praticidade com html, css e js)
+│
+├── PHP v8.4.5 (cli) (caso houver suporte migre para a versão mais recente)
+│   ├── Zend Engine v4.4.5, Copyright (c) Zend Technologies
+│   ├── NTS Visual C++ 2022 x64
+│   ├── Download: php-8.4.19-src.zip em "windows.php.net". Depois Extraia.
+│   └── Local do Path: C:\php-8.4\php.exe
+│
+├── Python-3.13.0-amd64 (caso houver suporte migre para a versão mais recente)
+│   ├── Path padrão: C:\Users\usuario\AppData\Local\Programs\Python\Python313\python.exe
+│   └── Meu Path: C:\Users\lorde\AppData\Local\Programs\Python\Python313\python.exe
+│
+├── XAMPP for Windows v8.2.12 (caso houver suporte migre para a versão mais recente)
+│   ├── Apache Ports: 4433, 8080
+│   └── MySQL Ports: 3306
+│
+└── Node.js® x64 LTS 24.14.1.msi (caso houver suporte migre para a versão mais recente)
+    └── Instalar: Electron (com Webview Chromium)
+        └── Node.js®.txt

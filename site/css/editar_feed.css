@@ -1,0 +1,208 @@
+/*editar_feed.css*/
+#pageContent { 
+    max-width: 1100px; 
+	margin: 40px auto; 
+	padding: 0 20px; 
+}  
+	
+.publish-container {
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    padding: 25px;
+    background: #0f0f0f; /* Fundo profundo */
+    border-radius: 15px;
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(249, 19, 19, 0.03);
+    transition: all 0.4s ease;
+	will-change: transform;
+    touch-action: pan-y;
+}
+
+.publish-container:focus-within {
+    border-color: rgba(249, 19, 19, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(249, 19, 19, 0.1);
+}
+
+/* TOOLBAR - ESTILO DARK GLASS */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, #1a1a1a, #141414);
+    padding: 12px 18px;
+    border: 1px solid #252525;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+	will-change: transform;
+    touch-action: pan-y;
+}
+
+.format-btn {
+    background: #222;
+    color: #999;
+    border: 1px solid #333;
+    width: 38px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'serif'; /* Para dar um ar mais "escritor" */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.format-btn:hover {
+    background: #F91313;
+    color: white;
+    border-color: #F91313;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(249, 19, 19, 0.3);
+}
+
+/* ÁREA DE TEXTO (TEXTAREA) */
+#main-textarea {
+    width: 100%; /* Mantém os 100% */
+    box-sizing: border-box; /* CRUCIAL: Faz o padding e a borda ficarem DENTRO dos 100% */
+    height: 180px;
+    background: #050505;
+    border: 1px solid #222;
+    color: #e0e0e0;
+    padding: 20px;
+    border-radius: 0 0 12px 12px;
+    resize: none;
+    font-size: 16px;
+    line-height: 1.7;
+    outline: none;
+    display: block; /* Garante que se comporte como um bloco sólido */
+    transition: border-color 0.3s, background 0.3s;
+	will-change: transform;
+    touch-action: pan-y;
+}
+
+#main-textarea::placeholder {
+    color: #333; /* Um pouco mais escuro para o "código" parecer inativo */
+    font-family: 'Courier New', monospace; /* Vibe de terminal */
+	will-change: transform;
+    touch-action: pan-y;
+}
+
+/* RODAPÉ DO EDITOR */
+.publish-footer {
+    margin-top: 20px;
+    display: flex;
+	will-change: transform;
+    touch-action: pan-y;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-upload {
+    background: #151515;
+    color: #888;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #222;
+    transition: 0.3s;
+	will-change: transform;
+    touch-action: pan-y;
+}
+
+.btn-upload:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #F91313;
+}
+
+.btn-publicar {
+    background: linear-gradient(145deg, #F91313, #b00);
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(249, 19, 19, 0.2);
+	will-change: transform;
+    touch-action: pan-y;
+}
+
+.btn-publicar:hover {
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 19, 19, 0.4);
+}
+.gradient-selector { 
+    display: flex; 
+    gap: 5px; align-items: center; 	
+	will-change: transform;
+    touch-action: pan-y;}
+
+.grad-opt {
+    width: 18px; 
+	height: 18px; 
+	border-radius: 3px; 
+	cursor: pointer;
+    border: 1px solid #444; 
+	transition: 0.2s;
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+.grad-opt:hover { transform: scale(1.2); border-color: #fff; }
+
+/* Cores dos seletores e Fundos da Textarea */
+.grad-fire { background: linear-gradient(135deg, #f91313, #550000) !important; color: white; }
+.grad-void { background: linear-gradient(135deg, #111, #444) !important; color: white; }
+.grad-blood { background: linear-gradient(135deg, #800000, #000) !important; color: white; }
+
+.g1 { background: #f91313; }
+.g2 { background: #444; }
+.g3 { background: #800000; }
+
+@media (max-width: 800px) {
+    #pageContent {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .publish-container {
+        max-width: 100%; /* Ocupa a largura disponível */
+        margin-bottom: 30px;
+        padding: 20px;
+    }
+
+    .toolbar {
+        padding: 10px;
+        flex-wrap: wrap; /* Permite que os botões quebrem linha se necessário */
+        gap: 8px;
+    }
+}
+
+@media (max-width: 800px) {
+    #pageContent {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .publish-container {
+        max-width: 100%; /* Ocupa a largura disponível */
+        margin-bottom: 30px;
+        padding: 20px;
+    }
+
+    .toolbar {
+        padding: 10px;
+        flex-wrap: wrap; /* Permite que os botões quebrem linha se necessário */
+        gap: 8px;
+    }
+}

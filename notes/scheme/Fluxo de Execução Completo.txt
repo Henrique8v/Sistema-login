@@ -1,0 +1,26 @@
+FLUXO DE EXECUÇÃO COMPLETO - RV PROJECT V1.0.1
+===========================================================================
+CRIADOR: Lorde Raveno (Landerson H.C. Memoria) | ANO: 2026
+
+1. INICIALIZAÇÃO DO BANCO (MYSQL/MARIADB):
+   - O sistema depende do serviço MySQL ativo via XAMPP.
+   - Carregamento inicial de 'projeto_login.sql'.
+
+2. ATIVAÇÃO DOS MOTORES DE BACKGROUND (PYTHON 3.13):
+   - Execução do 'ligar_rastros_silent.py'.
+   - O script inicia o 'monitor_tunnel.py' em modo invisível (sem janela).
+   - O monitor começa a registrar o status do sistema em 'rastros_live.log'.
+
+3. ESTABELECIMENTO DE TÚNEL (OPCIONAL/PINGGY):
+   - Via Dashboard, o 'executar_pinggy.py' dispara o túnel SSH.
+   - A URL pública é capturada e salva em 'config.json' para acesso remoto.
+
+4. NAVEGAÇÃO E INTERAÇÃO (FRONTEND):
+   - Acesso pelo 'acess_panel.htm'.
+   - O 'repo_manager.php' cataloga automaticamente novas páginas no diretório.
+   - O feed social carrega posts e comentários via AJAX (timeline_logica.php).
+
+5. MANUTENÇÃO E ANÁLISE DE SAÚDE (C++):
+   - O 'analisador.exe' (compilado via executar_cpp.py) valida logs e o DB.
+   - A limpeza de arquivos órfãos e logs antigos ocorre de forma autônoma.
+===========================================================================

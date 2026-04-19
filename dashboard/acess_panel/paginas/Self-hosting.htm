@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Soberania Digital | Brotherhood</title>
+    <style>
+        /* CSS GLOBAL - PADRÃO CIBERNÉTICO KORVADO [cite: 2026-02-24] */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-black: #020202;
+            --card-bg: #0d0d0d;
+            --cyber-green: #00ff41;
+            --cyber-cyan: #00f3ff;
+            --text-gray: #b0b0b0;
+            --border-blue: #4d70db;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-gray);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* CONTAINER BLINDADO PARA ALTO DPI [cite: 2026-03-02] */
+        .tableWidth {
+            width: 100vw;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* HEADER CIANO COM DESTAQUES */
+        .hacker-header {
+            width: 100%;
+            padding: 25px;
+            margin-bottom: 50px;
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--cyber-green);
+            border-right: 2px solid var(--border-blue);
+            border-left: 2px solid var(--border-blue);
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,243,255,0.05) 50%, rgba(0,0,0,1) 100%);
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            position: relative;
+        }
+
+        .hacker-header h1 {
+            color: #fff;
+            letter-spacing: 4px;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        /* ESTRUTURA DE ARTIGO EM CARDS */
+        .article-section {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            will-change: transform; [cite: 2026-02-05]
+            transition: 0.3s;
+        }
+
+        .article-section:hover {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.05);
+        }
+
+        h2 {
+            color: var(--cyber-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: ">_ ";
+            margin-right: 10px;
+            color: var(--cyber-green);
+        }
+
+        .step-label {
+            color: var(--cyber-green);
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* DESTAQUES TÉCNICOS */
+        code {
+            font-family: 'Consolas', monospace;
+            background: #000;
+            color: #dcdcaa;
+            padding: 3px 8px;
+            border: 1px solid #333;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            color: var(--cyber-green);
+            font-size: 0.8rem;
+        }
+
+        .info-box {
+            border-left: 4px solid var(--cyber-cyan);
+            background: rgba(0, 243, 255, 0.03);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* EFEITO DE SCANLINE */
+        .scanline {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @media (max-width: 600px) {
+            .article-section { padding: 20px; }
+            .hacker-header h1 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<div class="tableWidth">
+    <header class="hacker-header">
+        <h1>PROTOCOLO: SOBERANIA DIGITAL ABSOLUTA</h1>
+        <p style="color: var(--cyber-cyan); font-size: 0.7rem; letter-spacing: 3px; margin-top: 10px;">PROXMOX // ASN // INDEPENDÊNCIA DE NÓ</p>
+    </header>
+
+    <div class="article-section">
+        <span class="step-label">FASE 01</span>
+        <h2>O Alicerce: Hypervisor Proxmox</h2>
+        <p>O Proxmox será instalado diretamente no hardware (Bare Metal), eliminando dependências de sistemas operacionais domésticos. Nele, a VM da Brotherhood terá controle total.</p>
+        <div class="info-box">
+            <strong>Configuração VM Alpha (Ubuntu 24.04):</strong><br>
+            • CPU: 2 Cores | RAM: 3GB | Disco: 25GB<br>
+            • Rede: <code>Modo Bridge</code> (Conexão direta com roteador).
+        </div>
+    </div>
+
+    <div class="article-section">
+        <span class="step-label">FASE 02</span>
+        <h2>O Desafio do ASN e IP Próprio</h2>
+        <p>Transformar a Brotherhood em um Sistema Autônomo (ASN) significa deixar de ser cliente para se tornar parte do esqueleto da rede mundial.</p>
+        <ul>
+            <li><strong>Registro:</strong> Registro no NIC.br para obter bloco <code>/24</code>.</li>
+            <li><strong>Protocolo BGP:</strong> Necessário roteador com suporte a Border Gateway Protocol.</li>
+            <li><strong>Alternativa:</strong> Uso de IP Fixo empresarial apontado para o Proxmox (Efeito visual de soberania mantido).</li>
+        </ul>
+    </div>
+
+    <div class="article-section">
+        <span class="step-label">FASE 03</span>
+        <h2>Implementação FRPS (Soberania de Software)</h2>
+        <p>Dentro da VM Ubuntu, o servidor de tunelamento centraliza as conexões vindas do ASN/IP Fixo.</p>
+        <pre style="background:#000; padding:15px; border-radius:4px; margin-top:10px; border: 1px inset #222;">
+<code># Comando de persistência Korvado
+sudo ./frps -c frps.toml</code></pre>
+    </div>
+
+    <div class="info-box" style="border-left-color: var(--cyber-green);">
+        <h2 style="color: var(--cyber-green);">Jornada da Independência</h2>
+        <p>Este plano transforma sua residência em um nó indestrutível. O tráfego flui do mundo para o seu ASN, passa pelo Proxmox e atinge o seu <strong>XAMPP</strong> através do túnel de alto desempenho. [cite: 2026-02-03]</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px; font-size: 0.7rem; color: #444; letter-spacing: 2px;">
+        SISTEMA OPERACIONAL KORVADO | NODES_STATUS: ONLINE
+    </div>
+</div>
+
+</body>
+</html>

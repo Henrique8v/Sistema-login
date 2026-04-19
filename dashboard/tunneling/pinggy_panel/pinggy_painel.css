@@ -1,0 +1,104 @@
+body { background: #000; color: #ccc; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+
+.panel { 
+    max-width: 900px; margin: 0 auto; background: linear-gradient(145deg, #050505, #0a0a0a); 
+    border: 1px solid #1a1a1a; border-left: 5px solid green; padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Botões Transparentes Estilo Brotherhood */
+.btn-rastros, .btn-off, .btn-clear, .btn-pinggy {
+    background: transparent;
+    border: 2px solid #072c33;
+    color: #6e7d80;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* Hover Unificado */
+.btn-pinggy:hover, .btn-clear:hover, .btn-off:hover, .btn-rastros:hover { 
+    background: rgba(0, 191, 255, 0.1);  
+    color: white;
+    border-color: #00BFFF;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+/* Grid de controles */
+.control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+.control-group { display: flex; flex-direction: column; }
+
+/* Menu de Ferramentas */
+.term-tools {
+    position: absolute; top: 5px; right: 10px; display: flex; gap: 8px;
+    background: rgba(0,0,0,0.7); padding: 2px 5px; border-radius: 3px; 
+    will-change: transform; touch-action: pan-y; 
+}
+.tool-icon { cursor: pointer; font-size: 12px; transition: 0.2s; }
+.tool-icon:hover { color: #0F0; }
+
+/* Container dos Terminais em Grid */
+.grid-terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.term-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilização dos Terminais */
+.term-box {
+    background: #000;
+    border: 1px solid #1a1a1a;
+    border-top: 2px solid #333;
+    color: #00ff41; /* Verde Positivista */
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 12px;
+    padding: 10px;
+    height: 250px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    
+    /* Otimizações de Performance */
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+/* Scrollbar Personalizada para o Estilo Brotherhood */
+.term-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.term-box::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+.term-box::-webkit-scrollbar-thumb {
+    background: #111;
+    border-radius: 3px;
+}
+
+.term-box::-webkit-scrollbar-thumb:hover {
+    background: #00ff41;
+}
+
+/* Labels dos Terminais */
+.term-container small {
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}

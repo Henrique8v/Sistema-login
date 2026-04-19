@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Arquitetura Vanilla JS | Brotherhood</title>
+    
+    <style>
+        /* CSS GLOBAL - PADRÃO KORVADO */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-black: #050505;
+            --card-bg: #0d0d0d;
+            --cyber-green: #00ff41;
+            --dark-gray: #1a1a1a;
+            --text-main: #b0b0b0;
+            --glow: 0 0 12px rgba(0, 255, 65, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* CONTAINER CENTRALIZADO [cite: 2026-03-02] */
+        .tableWidth {
+            width: 100vw;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--dark-gray);
+            padding-bottom: 10px;
+        }
+
+        .section-box {
+            background: var(--card-bg);
+            border: 1px solid var(--dark-gray);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--glow);
+            will-change: transform; [cite: 2026-02-05]
+        }
+
+        h2 {
+            color: var(--cyber-green);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ESTILO LEGO / MODULAR */
+        .module-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .module-item {
+            background: #000;
+            border: 1px solid #222;
+            margin-bottom: 10px;
+            padding: 12px 18px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .module-item span {
+            color: var(--cyber-green);
+            font-family: monospace;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: #fff;
+            border-left: 3px solid var(--cyber-green);
+            padding-left: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        /* CÓDIGO */
+        pre {
+            background: #000;
+            color: var(--cyber-green);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #1a1a1a;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--dark-gray);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* AJUSTE DPI ALTO [cite: 2026-03-02] */
+        @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+            body { font-size: 92%; }
+            .section-box { padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .tableWidth { padding: 25px 15px; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tableWidth">
+    <h1>Modularidade Korvado</h1>
+
+    <div class="section-box">
+        <span class="badge">ESTRUTURA ATUAL</span>
+        <h2>Sistema de Injeção Modular</h2>
+        <p>Seu projeto funciona como um "LEGO" digital em Vanilla JS, injetando componentes via JavaScript puro:</p>
+        
+        <div class="module-list">
+            <div class="module-item"><span>01</span> header.js (Injeta o Topo)</div>
+            <div class="module-item"><span>02</span> Conteúdo HTML (O corpo da página)</div>
+            <div class="module-item"><span>03</span> pagination.js (Injeta o Navegador)</div>
+            <div class="module-item"><span>04</span> footer.js (Injeta o Rodapé)</div>
+        </div>
+    </div>
+
+    
+
+    <div class="section-box">
+        <h2>Vantagens do Vanilla JS</h2>
+        <p>Frameworks como React ou Angular trazem "canhões para matar formigas". Sua abordagem oferece:</p>
+        <ul>
+            <li><strong>Zero Configuração:</strong> Salve e funcione.</li>
+            <li><strong>Performance Real:</strong> Carregamento instantâneo.</li>
+            <li><strong>Controle Total:</strong> Você domina cada ponto e vírgula.</li>
+        </ul>
+        <div class="highlight-text">
+            O navegador não precisa baixar uma biblioteca de 500kb para renderizar um menu de 1kb.
+        </div>
+    </div>
+
+    <div class="section-box">
+        <h2>Dica de Ouro: O Loader Central</h2>
+        <p>Para manter o seu <code>index.html</code> limpo, você pode centralizar as chamadas em um único arquivo:</p>
+        <pre>
+// loader.js - Centralizador de Peças
+import './header.js';
+import './pagination.js';
+import './footer.js';</pre>
+    </div>
+</div>
+
+</body>
+</html>

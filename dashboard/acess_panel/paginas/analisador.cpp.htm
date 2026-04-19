@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Deep Analysis Architecture | Korvado</title>
+    <style>
+        /* CSS GLOBAL - PADRÃO CIBERNÉTICO [cite: 2026-02-24] */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-black: #050505;
+            --card-bg: #0d0d0d;
+            --cyber-green: #00ff41;
+            --cyber-cyan: #00f3ff;
+            --gold-analysis: #ffcc00;
+            --dark-gray: #1a1a1a;
+            --text-main: #b0b0b0;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            /* ESTILO DE TEXTO ATUALIZADO */
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* CONTAINER BLINDADO DPI ALTO [cite: 2026-03-02] */
+        .tableWidth {
+            width: 100vw;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hacker-header {
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--cyber-green);
+            border-right: 2px solid #4d70db;
+            border-left: 2px solid #4d70db;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 243, 255, 0.05);
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border: 1px solid var(--dark-gray);
+            padding: 20px;
+            position: relative;
+            will-change: transform; [cite: 2026-02-05]
+            transition: 0.3s ease;
+        }
+        
+        .step-card:hover {
+            border-color: var(--cyber-cyan);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            color: var(--cyber-cyan);
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        h2 { color: #fff; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; }
+
+        /* SINTAXE HIGHLIGHTING DIDÁTICO MANTIDO */
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .lang-php { color: #8892be; }    
+        .lang-py  { color: #ffd43b; }    
+        .lang-cpp { color: #569cd6; }    
+        .result-gold { color: var(--gold-analysis); font-weight: bold; text-shadow: 0 0 5px rgba(255, 204, 0, 0.5); }
+
+        .info-box {
+            margin-top: 40px;
+            border-left: 3px solid var(--cyber-cyan);
+            padding: 20px;
+            background: rgba(0, 243, 255, 0.02);
+        }
+
+        @media (max-width: 600px) {
+            .tableWidth { padding: 20px 15px; }
+            .analysis-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tableWidth">
+    <header class="hacker-header">
+        <h1>INTEGRAÇÃO DE ALTA PERFORMANCE</h1>
+        <p style="color: var(--cyber-cyan); font-size: 0.8rem; letter-spacing: 2px; font-weight: bold;">PHP + PYTHON + C++ ENGINE</p>
+    </header>
+
+    <div class="flow-container">
+        <div class="step-card">
+            <span class="step-number">01. INTERFACE</span>
+            <h2>Trigger PHP</h2>
+            <p>No seu <code class="lang-php">my_dashboard.php</code>, o gatilho é disparado. O PHP atua como o **Maestro**, gerenciando a sessão do usuário e a requisição web.</p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">02. AUTOMAÇÃO</span>
+            <h2>Script Python</h2>
+            <p>O PHP invoca o <code class="lang-py">executar_cpp.py</code>. O Python entra como a **Ponte de Automação**, preparando o ambiente e garantindo que o compilador esteja pronto.</p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">03. PERFORMANCE</span>
+            <h2>Núcleo C++</h2>
+            <p>O binário <code class="lang-cpp">analisador.exe</code> varre o MySQL e os Logs. Aqui o C++ fala direto com o **Hardware**, processando milhares de registros em milissegundos.</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 style="color: var(--cyber-green);">O Resultado Final</h2>
+        <p>Após a varredura profunda, o diagnóstico aparece <span class="result-gold">DOURADO</span> no seu terminal. Você não tem apenas um site; você tem uma **Engine de Análise** que utiliza o melhor de cada linguagem:</p>
+        <ul style="margin-left: 20px; margin-top: 10px; font-size: 0.95rem;">
+            <li><strong>PHP:</strong> Flexibilidade e Contexto Web.</li>
+            <li><strong>Python:</strong> Agilidade em Scripts e Bibliotecas.</li>
+            <li><strong>C++:</strong> Velocidade de Execução Pura (Zero Overhead).</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; font-size: 0.7rem; color: #444; letter-spacing: 1px;">
+        ACESSO RESTRITO - BROTHERHOOD PROTOCOL v2.6
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+/*perfil_membro.css*/
+/*patch de correção de tamanho da imagem do usuario membro*/
+.img-membro-topo {
+    width: 163px;           
+    height: 163px;	
+}

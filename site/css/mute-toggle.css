@@ -1,0 +1,37 @@
+/* Botão de Som nos Vídeos */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mute-toggle {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--primary-green);
+    color: var(--primary-green);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.2s;
+    font-size: 14px;
+}
+
+.card-post:hover .mute-toggle {
+    opacity: 1;
+}
+
+.mute-toggle:hover {
+    transform: scale(1.1);
+    background: var(--primary-green);
+    color: black;
+}

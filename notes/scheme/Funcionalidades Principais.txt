@@ -1,0 +1,18 @@
+FUNCIONALIDADES PRINCIPAIS - RV PROJECT V1.0.1
+===========================================================================
+ESTRUTURA CORE:
+- Sistema de Login/Cadastro com upload de foto de perfil.
+- Dashboard de monitoramento em tempo real (Status do Túnel e Rastros).
+- Repositório Dinâmico: Cadastro automático de arquivos .php/.htm no banco.
+
+SISTEMA SOCIAL (BROTHERHOOD):
+- Timeline Interativa: Suporte a vídeos (auto-play/mute inteligente) e imagens.
+- Rastros (Comentários): Sistema recursivo (respostas dentro de respostas).
+- Integração de Mídia: Seletor de Emojis e busca de GIFs via Giphy API.
+- Notificações: Sistema 'Swipe to Delete' (arraste para excluir) para alertas.
+
+INFRAESTRUTURA & SEGURANÇA:
+- Deep Analysis C++: Verificação de integridade de arquivos de sistema.
+- Faxina Automática: Script que deleta fotos de perfil sem vínculo no banco.
+- Log Rotation: Limpeza de arquivos de log com mais de 24 horas.
+===========================================================================

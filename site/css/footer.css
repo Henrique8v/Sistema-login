@@ -1,0 +1,61 @@
+:root {
+    /* MODO ESCURO (Padrão Korvado) */
+    --bg-body: #000;
+    --bg-container: linear-gradient(145deg, #050505, #0a0a0a);
+    --text-principal: #ccc;
+    --text-secundario: #bbbbbb;
+    --border-color: #333333;
+    --accent-color: #F91313; /* Vermelho Korvado */
+    --accent-hover: #ff1a1a;
+    --input-bg: #222222;
+    --filter-icon: invert(0);
+    --filter-logo: drop-shadow(0px 0px 2px rgba(255,0,0,0.5));
+    --cor-vermelho: #FF0000;
+    --cor-preto: #000000;
+    --gradiente-dark: linear-gradient(to bottom, #333333 0%, #1a1a1a 50%, #000000 100%);
+    --radius-padrao: 8px;
+}
+
+#footer-main {
+	margin-top: 50px; 
+	width: 100%;
+	background: var(--bg-container);
+    /* border: 0px solid var(--border-color); */
+    color: var(--text-principal);
+}
+
+#footer-box {
+    background: var(--bg-container);
+    /* border: 0px solid var(--border-color); */
+    color: var(--text-principal); 
+    border-radius: 5px; 
+    height: 90px; 
+    opacity: 0.9; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+#footer-header {
+    text-align: center; 
+	margin: 0;
+}
+#footer-area {
+	font-family: trebuchet;
+}
+.footer-area-text {
+    color: white; 
+	font-size: 13px; 
+	padding: 0px 5px; 
+	text-decoration: none;
+}
+.copyright {
+	color: white; 
+	font-size: 10px; 
+	text-align: center; 
+	margin-top: 5px; 
+	opacity: 0.7;
+}

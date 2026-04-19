@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Documentação Técnica | Brotherhood</title>
+    
+    <style>
+        /* RESET E PADRÃO CIBERNÉTICO */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-dark: #050505;
+            --container-bg: #0d0d0d;
+            --accent-green: #00ff41;
+            --text-gray: #b0b0b0;
+            --border-color: #1a1a1a;
+            --neon-glow: 0 0 15px rgba(0, 255, 65, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-gray);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* CLASSE DE LARGURA CONTROLADA */
+        .tableWidth {
+            width: 100vw;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            will-change: transform;
+        }
+
+        h1 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-left: 4px solid var(--accent-green);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+        }
+
+        h2 {
+            color: var(--accent-green);
+            margin: 30px 0 15px 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: ">";
+            font-weight: bold;
+        }
+
+        .card-info {
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--neon-glow);
+            transition: 0.3s;
+        }
+
+        .card-info:hover {
+            border-color: #333;
+            transform: translateY(-2px);
+        }
+
+        code {
+            background: #000;
+            color: var(--accent-green);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border: 1px solid #111;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin: 15px 0;
+            color: #00ff41;
+        }
+
+        .highlight-box {
+            border-left: 3px solid var(--accent-green);
+            background: rgba(0, 255, 65, 0.03);
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        strong { color: #fff; }
+
+        /* MEDIA QUERY PARA DPI GIGANTE */
+        @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+            body { font-size: 95%; }
+            .tableWidth { max-width: 100vw; }
+        }
+
+        @media (max-width: 480px) {
+            .tableWidth { padding: 20px 15px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tableWidth">
+    <h1>Manual de Otimização DPI</h1>
+
+    <div class="card-info">
+        <h2>1. Meta Viewport "Blindado"</h2>
+        <p>Para evitar que o navegador mobile force escalas incorretas em telas de alta densidade:</p>
+        <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"&gt;</pre>
+        <ul>
+            <li><strong>shrink-to-fit=no:</strong> Essencial para iOS/Safari.</li>
+            <li><strong>width=device-width:</strong> Trabalha com pixels lógicos.</li>
+        </ul>
+    </div>
+
+    <div class="card-info">
+        <h2>2. O Segredo do Box-Sizing</h2>
+        <p>Evita que padding e bordas empurrem elementos para fora da tela (flutuação lateral).</p>
+        <pre>* { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+}</pre>
+    </div>
+
+    <div class="card-info">
+        <h2>3. Unidades Relativas (vw / dvh)</h2>
+        <p>Em DPI alto, prefira <code>vw</code> para containers globais em vez de larguras fixas em <code>px</code>.</p>
+        <div class="highlight-box">
+            Use <code>width: 100vw; max-width: 100%;</code> para garantir o encaixe perfeito.
+        </div>
+    </div>
+
+    <div class="card-info">
+        <h2>4. Media Queries de Densidade</h2>
+        <p>Ajuste fino para telas 1080p+ (DPR 3x ou superior):</p>
+        <pre>@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+    body { font-size: 95%; }
+}</pre>
+    </div>
+
+    <div class="card-info">
+        <h2>5. Simulação de Teste</h2>
+        <p><strong>No Chrome/Opera GX:</strong> F12 > Device Mode > ⋮ > Add device pixel ratio > Escolha 3.</p>
+        <p><strong>No Firefox:</strong> Ctrl + Shift + M > Selecione DPR 3.0.</p>
+        <div class="highlight-box">
+            <strong>Dica de Ouro:</strong> Use <code>max-width: 100%</code> em todas as imagens e inputs.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

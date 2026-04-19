@@ -1,0 +1,33 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ M E T A S @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+A Partir de dada evolução da versão 1.0.1:
+
+[x] Scrolling em notificações, diminuir o tamanho para um tamanho fixo.
+[x] Scrolling no layout do chat privado.
+[x] Scrolling no layout dos comemtarios.
+[x] Apagar fotos e arquivos de img/posts quando o usuario mudar  a foto de perfil ou apagar um post. 
+[x] Separar uma pasta com ID para cada usuario para foto de perfil e postagens.
+[x] Usar UI Desktop para criar um launcher que suporte CSS3, HTML5, JS ES14 e PDO/POO.
+[] Corrigir o Sistema-login/conf.php para o modo noite/claro e outras opções.
+[] Separar os uploads de videos das imagens na pasta site\video\posts\
+[] Permitir mostrar as outras postagens de cima pra baixo no modal_post/timeline ao abrir uma postagem como no feed do instagram.
+[] Em notificações adicionar a opção de apagar historico.
+[] Mostrar o texto da postagem da imagem e video na timeline ao abrir o modal_post.
+[] Formar chat em grupo.
+[] Ao clicar em imagem de perfil permitir abrir a foto na tela em tamanho maior.
+[] Sessão de comentarios estilo Valve-Steam na pagina de perfil para postar comentarios sobre o perfil.
+[] Paginação em Pefil_do_usuario e perfil_membros para sessão de comentarios.
+
+Nivel mais Complexo:
+
+[] Fazer um feed de atualizações de postagens recentes e relevantes em Sistema-login/public/home.php
+[] Criar Storys, permitir ver storys do membro e o seu proprio storys pela imagem de perfil, com animação indicando stotys e storys novo ainda não vizualizado (neon amarelo e neon vermelho em formado de moldura ou bordas ou um ponto indicando pela cor o storys).
+[] Criar um ecossitema de reels e mostrar postagens de usuarios em um feed publico em um outro script como sistema_de_publicacoes.php integrado ao pefil e membros. Criar algo similar a:
+
+Sugestões:
+
+TikTok: Aba Amigos (Friends Tab). É uma aba dedicada no aplicativo que exibe vídeos apenas de pessoas que você segue e que te seguem de volta (mútuos) + Instagram: Aba Amigos (Friends Tab) no Reels. Lançada em 2025, esta aba no topo da seção de Reels exibe vídeos que seus amigos curtiram, comentaram ou republicaram.
+
+Instagram (Recurso de conexão): Blend. É um recurso de feed compartilhado criado especificamente com um amigo ou em grupo, que mistura Reels recomendados para ambos.
+
+Instagram (Compartilhamento): Repostar/Reposts. Permite que você republicar reels/posts de outros no seu próprio feed de seguidores, o que aparece na sua aba de reposts. 

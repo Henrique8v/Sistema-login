@@ -1,0 +1,227 @@
+/* template.css - Versão Elite Consolidada RV Project */
+*, *::before, *::after {
+    /* Faz com que a cor do texto e da borda acompanhe o tema automaticamente */
+    color: inherit; 
+    border-color: var(--border-color);
+}
+
+/* 1. Variáveis e Reset */
+:root {
+    /* MODO ESCURO (Padrão Korvado) */
+    --bg-body: #000;
+    --bg-container: linear-gradient(145deg, #050505, #0a0a0a);
+    --text-principal: #ccc;
+    --text-secundario: #bbbbbb;
+    --border-color: #333333;
+    --accent-color: #F91313; /* Vermelho Korvado */
+    --accent-hover: #ff1a1a;
+    --input-bg: #222222;
+    --filter-icon: invert(0);
+    --filter-logo: drop-shadow(0px 0px 2px rgba(255,0,0,0.5));
+    --cor-vermelho: #FF0000;
+    --cor-preto: #000000;
+    --gradiente-dark: linear-gradient(to bottom, #333333 0%, #1a1a1a 50%, #000000 100%);
+    --radius-padrao: 8px;
+}
+
+.sidebar, .chat-header, .msg-box, .input-area {
+    background: transparent !important;
+    background-color: transparent !important;
+	will-change: transform;
+}
+
+/* CLASSE ÚNICA PARA MODO CLARO */
+body.modo-claro {
+    --bg-body: #E1DEDE; /* cor de fundo do body */
+    --bg-container: #CACACA; /* cor do container e divs */
+    --border-color: #F3F3F3; /*cor das bordas*/
+	--filter-icon: invert(1); /* Faz ícones pretos virarem brancos e vice-versa */
+    --filter-logo: none;
+	--text-principal: #000000;
+	--color: inherit;
+}
+
+/* Mas se você quer que eles fiquem brancos como o fundo no Modo Claro: */
+body.modo-claro section, 
+body.modo-claro main {
+    background-color: var(--bg-body);
+}
+
+body.modo-claro .modal-post-container {
+    background-color: var(--bg-body);
+}
+
+body.modo-claro .modal-post-header {
+    background-color: var(--bg-body);
+}
+
+/* Estilos Cibernéticos e Positivistas */
+body {  
+    margin: 20px; padding: 0; 
+    vertical-align: middle; 
+    flow: vertical; 
+    touch-action: pan-y;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14pt;
+    background-color: var(--bg-body) !important;
+    color: var(--text-principal);
+    flex-grow: 1; /* Faz o corpo esticar */   
+    transition: background-color 0.4s ease;
+    visibility: visible;
+    opacity: 1;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    font-family: 'Inter', Roboto, Helvetica, Arial, sans-serif;
+	}
+	
+html {
+    background-color: #000000 !important; 
+    overflow-y: auto; 
+	overflow-x: hidden; 
+	scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 200;
+    scrollbar-color: #888 #e0e0e0; /* cor-polegar cor-trilha */		
+}
+
+
+/* 2. Aplicação Global com Performance RV */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Altura total da janela */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-body);
+    color: var(--text-principal);
+}
+
+/* --- RESPONSIVIDADE CIBERNÉTICA (Smartphones Pequenos e Médios) --- */
+@media (max-width: 800px) {
+    html, body {
+        height: auto;
+        touch-action: pan-y; /* Melhora a rolagem vertical no Android */		
+        min-height: -webkit-fill-available; /* Ajuste para navegadores mobile (Chrome/Safari) */
+        overflow-x: hidden; /* Impede que o site "dance" para os lados */
+    }
+
+    body {
+        /* Ajusta o flex para não travar o layout em telas estreitas */
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+}
+
+/* Ajuste específico para dispositivos como Moto G One (telas muito estreitas) */
+@media (max-width: 480px) {
+    html, body {
+		height: auto;      
+        position: relative;
+        touch-action: pan-y; /* Melhora a rolagem vertical no Android */
+		min-height: -webkit-fill-available; /* Ajuste para navegadores mobile (Chrome/Safari) */
+        overflow-x: hidden; /* Impede que o site "dance" para os lados */
+		
+    }
+	
+	body {
+        /* Ajusta o flex para não travar o layout em telas estreitas */
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+}
+
+h1, h2, h3, h4 {
+	margin: 20px; padding: 0; 
+    vertical-align: middle; 
+    flow: vertical; 
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14pt;
+    color: var(--text-principal);
+    flex-grow: 1; /* Faz o corpo esticar */   
+    visibility: visible;
+    font-family: 'Inter', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 3. Containers Dinâmicos */
+.perfil-container, .busca-container, .perfil-header, .card-amigo {
+    background: var(--bg-container);
+    border: 1px solid var(--border-color);
+    color: var(--text-principal);
+    border-radius: var(--radius-padrao);
+    touch-action: pan-y; /* Performance Touch */
+	will-change: transform;
+	flex: 1 0 auto; /* Faz o conteúdo "empurrar" o fundo se crescer */
+    display: flex;
+    flex-direction: column;
+}
+
+.tableWidth {
+	max-width: 1200px; /* Largura ideal para desktop */
+    margin: 0 auto;    /* Mágica da centralização */
+    padding: 0 20px;   /* Respiro lateral para mobile */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input, textarea {
+    background: var(--input-bg);
+    color: var(--text-principal);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+#subTitle {
+    background: var(--gradiente-dark);
+    color: var(--accent-color);
+    padding: 18px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid var(--border-color);
+}
+
+#pageContent {
+    background-color: var(--bg-container);
+    padding: 40px 30px;
+    min-height: 70vh;
+    will-change: transform;	
+}
+
+/* 5. Links e Botões com Brilho Dinâmico */
+a { text-decoration: none; color: var(--accent-color); transition: 0.3s; }
+a:hover { color: var(--text-principal); filter: brightness(1.2); }
+
+.btn-neon {
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    will-change: transform;
+}
+
+.btn-neon:hover {
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 0 15px var(--accent-color);
+    transform: scale(1.05);
+}
+
+btn {
+	will-change: transform;
+    display: flex;
+    flex-direction: column;
+}

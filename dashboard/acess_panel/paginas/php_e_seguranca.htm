@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Architecture | Brotherhood</title>
+    <style>
+        /* ESTILO EXCLUSIVO ACCESS PANEL [cite: 2026-03-05] */
+        :root {
+            --bg: #020202;
+            --green: #00ff41;
+            --cyan: #00f3ff;
+            --gray: #b0b0b0;
+            --card: #0d0d0d;
+            --blue-border: #4d70db;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--gray);
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header-main {
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--green);
+            border-left: 2px solid var(--blue-border);
+            border-right: 2px solid var(--blue-border);
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(90deg, #000 0%, rgba(0, 243, 255, 0.05) 50%, #000 100%);
+            margin-bottom: 50px;
+        }
+
+        h1 { color: #fff; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-size: 1.6rem; }
+        h2 { color: var(--cyan); border-bottom: 1px solid #222; padding-bottom: 10px; margin-top: 40px; text-transform: uppercase; font-size: 1.2rem; }
+        h3 { color: var(--green); font-size: 1rem; margin-top: 25px; }
+
+        .article-card {
+            background: var(--card);
+            border: 1px solid #1a1a1a;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        /* USO DA TAG PRE PARA FORMATAÇÃO NATURAL */
+        pre {
+            background: #000;
+            padding: 20px;
+            border-left: 3px solid var(--green);
+            color: #dcdcaa;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            white-space: pre-wrap; /* Mantém a quebra de linha natural */
+        }
+
+        .important-note {
+            background: rgba(0, 243, 255, 0.02);
+            border: 1px solid var(--blue-border);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tag-php { color: var(--green); font-weight: bold; }
+        
+        ul { list-style: none; padding: 0; }
+        ul li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        ul li::before { content: "»"; position: absolute; left: 0; color: var(--cyan); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-main">
+        <h1>Arquitetura de Extensões & Segurança</h1>
+        <p style="color: var(--cyan); font-size: 0.8rem; margin-top: 10px; letter-spacing: 2px;">ESTRATÉGIA DE ARQUIVOS: PHP VS HTML</p>
+    </header>
+
+    <div class="article-card">
+        <h2>1. Início de Processamento: A Tag Mestra</h2>
+        <p>Toda página dentro do nosso ecossistema deve iniciar com a abertura do motor PHP. Isso permite que o servidor processe a lógica de <strong>POO</strong> e as conexões <strong>PDO</strong> antes de renderizar qualquer HTML para o usuário.</p>
+        
+        <pre>
+&lt;?php 
+    // Início obrigatório para sessões e classes de segurança
+    require_once 'config.php';
+    $user = new Usuario(); 
+?&gt;
+        </pre>
+    </div>
+
+    <div class="article-card">
+        <h2>2. Por que Padronizar em .php?</h2>
+        <p>Embora não seja estritamente necessário para páginas estáticas, o uso da extensão <code>.php</code> no ambiente XAMPP oferece vantagens estratégicas:</p>
+        
+        <ul>
+            <li><strong>Flexibilidade Evolutiva:</strong> Permite adicionar elementos dinâmicos (ano atual no rodapé, menus via <code>include</code>) sem renomear arquivos e quebrar links.</li>
+            <li><strong>Padronização de Projeto:</strong> Mantém o repositório coeso, facilitando a inclusão de cabeçalhos e sistemas de proteção global.</li>
+            <li><strong>Ocultação de Estrutura:</strong> Dificulta a identificação imediata de quais partes do site são puramente estáticas.</li>
+        </ul>
+    </div>
+
+    
+
+    <div class="article-card">
+        <h2>3. A Realidade da Segurança no XAMPP</h2>
+        <div class="important-note">
+            A extensão <code>.php</code> não é um "escudo mágico". A segurança real vem da <strong>sanitização de dados</strong> e da configuração correta do Apache.
+        </div>
+        
+        <p>Riesgos e Mitigação:</p>
+        <ul>
+            <li><strong>Exposição de Código:</strong> Se o Apache falhar, o código-fonte pode vazar. Por isso, nunca guardamos credenciais brutas em páginas de visualização.</li>
+            <li><strong>Vulnerabilidades (CVE-2024-4577):</strong> A segurança depende de manter o PHP/XAMPP atualizado contra execuções remotas de código (RCE).</li>
+        </ul>
+    </div>
+
+    <div class="article-card">
+        <h2>4. Didática: Quando usar cada extensão?</h2>
+        <pre>
+INDEX.PHP: 
+Obrigatório. Gerencia o fluxo inicial, login e roteamento.
+
+PÁGINAS SIMPLES (Sobre, Termos): 
+Podem ser .html, mas recomendamos .php se utilizarem 
+o topo/rodapé padrão do Sistema-login.
+
+CONTROLE DE ACESSO:
+Sempre .php. É onde o PDO valida se o usuário tem 
+permissão para enxergar o conteúdo.
+        </pre>
+    </div>
+
+    <div style="text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; margin-top: 50px;">
+        KORVADO ARCHITECTURE | XAMPP STACK 2026
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+
+Instale o XAMPP, use porta 8080 no PHP Apache.
+descubra seu ipv4 (cmd: ipconfig) wifi ou internt
+
+nota: o index.php faz a conexão de acesso a pagina
+
+link: http://192.168.1.24:8080

@@ -1,0 +1,5 @@
+Database Mock é uma técnica de teste de software que simula um banco de dados real (automatizado), permitindo que a aplicação interaja com dados fictícios e comportamentos pré-definidos (sucesso/erro) sem precisar de conexão real, infraestrutura, queries SQL ou schemas. Ele isola a unidade testada, garantindo testes mais rápidos, determinísticos e independentes de ambiente. 
+
+Controle Editorial: Você escolhe exatamente quais palavras-chave levam a qual link. Se quiser que alguém procure por "Mestre" e caia no seu perfil, você configura isso em um segundo no seu posts-db.js.
+
+Segurança: Nenhum hacker vai conseguir injetar links maliciosos no seu banco de dados via "SQL Injection", porque o seu "banco" é um arquivo de texto que só você edita.

@@ -1,0 +1,11 @@
+CHECKLIST DE IMPLEMENTAÇÃO - SISTEMA-LOGIN
+===========================================================================
+[ ] Configurar caminho do $python_bin no 'my_dashboard.php'.
+[ ] Importar 'projeto_login.sql' no PHPMyAdmin.
+[ ] Verificar se a pasta 'logs/' tem permissão de escrita.
+[ ] Mapear o caminho do g++.exe (MinGW) no script 'executar_cpp.py'.
+[ ] Validar o BASE_DIR em 'monitor_tunnel.py' para apontar à raiz do XAMPP.
+[ ] Testar se o arquivo 'status.txt' está sendo criado na pasta do túnel.
+[ ] Confirmar se o seletor de emojis/GIFs injeta corretamente no footer do modal.
+[ ] Executar 'Deep Analysis C++' para validar conexão inicial.
+===========================================================================

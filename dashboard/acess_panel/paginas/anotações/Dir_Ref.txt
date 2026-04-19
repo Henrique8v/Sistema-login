@@ -1,0 +1,3 @@
+../../../img/user.jpg
+
+Nesse exemplo vc diz que quer retroceder 3 diretorios e avançar depois 1 repositorio até o arquivo.

@@ -1,0 +1,6 @@
+[common]
+bind_port = 7000
+# Painel de controle do túnel na VPS
+dashboard_port = 7500
+dashboard_user = admin
+dashboard_pwd = brotherhood_admin

@@ -1,0 +1,38 @@
+--- INICIANDO CONEXÃO PINGGY ---
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+Allocated port 1 for remote forward to 127.0.0.1:8080
+You are not authenticated.
+Your tunnel will expire in 60 minutes. Upgrade to Pinggy Pro to get unrestricted tunnels. https://dashboard.pinggy.io
+http://ynrlv-201-76-139-3.run.pinggy-free.link
+https://ynrlv-201-76-139-3.run.pinggy-free.link
+
+RB: 0, SB: 0, TC: 0, AC: 0               
+RB: 1076, SB: 0, TC: 1, AC: 1               
+RB: 1076, SB: 0, TC: 1, AC: 1               
+RB: 1076, SB: 0, TC: 1, AC: 1               
+RB: 2102, SB: 325, TC: 1, AC: 1               
+RB: 2102, SB: 325, TC: 1, AC: 1               
+RB: 2102, SB: 325, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 3052, SB: 5822, TC: 1, AC: 1               
+RB: 6916, SB: 404658, TC: 5, AC: 5               
+RB: 6916, SB: 404658, TC: 5, AC: 5               
+RB: 6916, SB: 404658, TC: 5, AC: 5               
+RB: 6916, SB: 404658, TC: 5, AC: 5               
+RB: 6916, SB: 404658, TC: 5, AC: 5               
+RB: 7845, SB: 668527, TC: 5, AC: 5               
+RB: 7845, SB: 668527, TC: 5, AC: 5               
+RB: 7845, SB: 668527, TC: 5, AC: 5               
+RB: 8858, SB: 672197, TC: 5, AC: 5               
+RB: 8858, SB: 672197, TC: 5, AC: 5               
+RB: 8858, SB: 672197, TC: 5, AC: 5               
+RB: 9847, SB: 675014, TC: 5, AC: 5               
+RB: 9847, SB: 675014, TC: 5, AC: 3               
+RB: 9847, SB: 675014, TC: 5, AC: 1               
+RB: 9847, SB: 675014, TC: 5, AC: 0               client_loop: send disconnect: Connection reset

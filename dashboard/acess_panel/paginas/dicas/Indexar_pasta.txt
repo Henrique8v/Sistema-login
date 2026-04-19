@@ -1,0 +1,1 @@
+se colocar apenas o caminho assim: "\posts\o_principio" será mostrado a pasta com os arquivos do site.

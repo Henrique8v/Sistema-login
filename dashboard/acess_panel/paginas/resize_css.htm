@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dimensionamento Master | Korvado</title>
+    <style>
+        /* CSS GLOBAL KORVADO [cite: 2026-02-24] */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #020202;
+            --green: #00ff41;
+            --cyan: #00f3ff;
+            --blue: #4d70db;
+            --card: #0d0d0d;
+            --text: #b0b0b0;
+            --code-bg: #000000;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .tableWidth {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .hacker-header {
+            grid-column: 1 / -1;
+            padding: 25px;
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--green);
+            border-right: 2px solid var(--blue);
+            border-left: 2px solid var(--blue);
+            background: linear-gradient(90deg, #000, rgba(0, 243, 255, 0.05));
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* CARD ESTRUTURA */
+        .lab-card {
+            background: var(--card);
+            border: 1px solid #1a1a1a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            will-change: transform; [cite: 2026-02-05]
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card-header h2 { color: var(--cyan); font-size: 1rem; text-transform: uppercase; }
+
+        /* TEXTO E CÓDIGO */
+        .desc { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 3px solid var(--green);
+            font-family: 'Consolas', monospace;
+            font-size: 0.8rem;
+            color: #dcdcaa;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        .code-comment { color: #6a9955; }
+
+        /* TOGGLE */
+        .switch { width: 40px; height: 20px; position: relative; display: inline-block; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background: #333; transition: .4s; border: 1px solid var(--blue);
+        }
+        .slider:before {
+            content: ""; position: absolute; height: 12px; width: 12px;
+            left: 3px; bottom: 3px; background: #fff; transition: .4s;
+        }
+        input:checked + .slider { background: rgba(0, 255, 65, 0.2); border-color: var(--green); }
+        input:checked + .slider:before { transform: translateX(20px); background: var(--green); box-shadow: 0 0 10px var(--green); }
+
+        /* INFRAME SIMULATOR */
+        .preview {
+            height: 180px;
+            background: #000;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px dashed #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .target {
+            width: 100px; height: 50px;
+            background: var(--cyan);
+            border: 1px solid #fff;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center;
+            color: #000; font-weight: bold; font-size: 0.7rem;
+            text-align: center;
+        }
+
+        /* ESTADOS DINÂMICOS */
+        .st-size { width: 250px !important; height: 120px !important; background: var(--green) !important; }
+        .st-scale { transform: scale(2.2); background: var(--green) !important; }
+        .st-zoom { zoom: 2.2; background: var(--green) !important; }
+        .st-resize { resize: both; overflow: auto; width: 140px; height: 70px; }
+
+        /* TABELA DE RESUMO */
+        .footer-table {
+            grid-column: 1 / -1;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: var(--card);
+        }
+        .footer-table th, .footer-table td { border: 1px solid #222; padding: 15px; text-align: left; font-size: 0.9rem; }
+        .footer-table th { color: var(--cyan); background: #111; text-transform: uppercase; font-size: 0.8rem; }
+
+        @media (max-width: 900px) { .tableWidth { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="tableWidth">
+    <header class="hacker-header">
+        <h1 style="color:#fff; letter-spacing: 3px; font-size: 1.5rem;">CSS SIZING LAB & DOCUMENTATION</h1>
+    </header>
+
+    <div class="lab-card">
+        <div class="card-header">
+            <h2>01. Width e Height</h2>
+            <label class="switch"><input type="checkbox" onchange="tg('t1','st-size')"><span class="slider"></span></label>
+        </div>
+        <p class="desc">A forma mais direta de controle físico. Afeta o fluxo do layout.</p>
+        <pre>.caixa {
+    width: 300px; <span class="code-comment">/* Largura */</span>
+    height: 150px; <span class="code-comment">/* Altura */</span>
+}</pre>
+        <div class="preview"><div id="t1" class="target">300px x 150px</div></div>
+    </div>
+
+    <div class="lab-card">
+        <div class="card-header">
+            <h2>02. Transform: Scale()</h2>
+            <label class="switch"><input type="checkbox" onchange="tg('t2','st-scale')"><span class="slider"></span></label>
+        </div>
+        <p class="desc">Aumenta/diminui sem alterar o layout ao redor. Ideal para animações.</p>
+        <pre>.botao:hover {
+    transform: scale(1.1); <span class="code-comment">/* +10% no hover */</span>
+}</pre>
+        <div class="preview"><div id="t2" class="target">SCALE(2.2)</div></div>
+    </div>
+
+    <div class="lab-card">
+        <div class="card-header">
+            <h2>03. Property: Zoom</h2>
+            <label class="switch"><input type="checkbox" onchange="tg('t3','st-zoom')"><span class="slider"></span></label>
+        </div>
+        <p class="desc">Ampliação total incluindo textos. Recalcula o layout da página.</p>
+        <pre>.item-grande {
+    zoom: 2; <span class="code-comment">/* Dobra o tamanho total */</span>
+}</pre>
+        <div class="preview"><div id="t3" class="target">ZOOM 2.2</div></div>
+    </div>
+
+    <div class="lab-card">
+        <div class="card-header">
+            <h2>04. User Resize</h2>
+            <label class="switch"><input type="checkbox" onchange="tg('t4','st-resize')"><span class="slider"></span></label>
+        </div>
+        <p class="desc">Torna o item redimensionável pelo mouse. Exige overflow definido.</p>
+        <pre>.caixa {
+    resize: both; <span class="code-comment">/* Horizontal e Vertical */</span>
+    overflow: auto;
+}</pre>
+        <div class="preview"><div id="t4" class="target">DRAG CORNER</div></div>
+    </div>
+
+    <table class="footer-table">
+        <thead>
+            <tr>
+                <th>Propriedade</th>
+                <th>Contexto de Uso</th>
+                <th>Afeta Layout?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>width/height</strong></td><td>Layouts responsivos e tamanhos fixos.</td><td style="color:var(--cyan)">Sim</td></tr>
+            <tr><td><strong>transform: scale</strong></td><td>Animações, interações de hover e zoom visual.</td><td style="color:var(--green)">Não</td></tr>
+            <tr><td><strong>zoom</strong></td><td>Ampliação rápida e acessibilidade de conteúdo.</td><td style="color:var(--cyan)">Sim</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function tg(id, cls) { document.getElementById(id).classList.toggle(cls); }
+</script>
+
+</body>
+</html>

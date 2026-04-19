@@ -1,0 +1,251 @@
+/* menu.css - RV Project Versão Final */
+
+/* 1. Container Principal do Menu (Desktop) */
+.menuhorizontal2 {
+    display: flex; 
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 20px; 
+    align-items: center;
+    flex-direction: row; /* Horizontal por padrão */
+}
+
+/* Reset de Listas */
+.menuhorizontal2, 
+.menuhorizontal2 ul, 
+.menuhorizontal2 li {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Itens do Menu Principal (Desktop) */
+.menuhorizontal2 > li {
+    position: relative;
+    margin-right: 5px;
+    /* Adicionamos isso para garantir que a LI ocupe a altura toda do header */
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.menuhorizontal2 > li > a, 
+.menuhorizontal2 > li > span {
+    display: block;
+    text-decoration: none !important;
+    padding: 0 10px; /* Reduzi de 12px para 10px para encaixar melhor */
+    line-height: 20px;
+    font-family: 'Verdana', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.menuhorizontal2 > li:hover > a {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* O segredo: manter o display enquanto o mouse estiver sobre o PAI (li) */
+.menuhorizontal2 li:hover > ul {
+    display: block !important;
+}
+
+.menuhorizontal2 > li > a:visited {
+    color: white !important;
+}
+
+/* Submenu (Desktop - Flutuante) */
+.menuhorizontal2 li ul {
+    display: none;
+    position: absolute;
+    /* Ajuste de OURO: mude top para a altura exata do seu header ou use 100% */
+    top: 100%; 
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 180px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border-top: 2px solid red;
+    white-space: nowrap;
+    margin: 0;
+    /* Este padding cria uma "ponte" invisível para o mouse não cair no buraco */
+    padding-top: 5px; 
+}
+
+/* Garante que o hover no PAI mantenha o FILHO aberto sem falhas */
+.menuhorizontal2 li:hover > ul {
+    display: block !important;
+}
+
+.menuhorizontal2 li ul a {
+    padding: 10px 15px;
+    color: red;
+    display: block;
+    text-decoration: none !important;
+    font-size: 12px;
+}
+
+.menuhorizontal2 li ul a:hover {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: white;
+}
+
+/* ############################################################## */
+/* 2. Responsividade Estilo Android (Mobile) - SEM ALTERAÇÕES */
+/* ############################################################## */
+
+@media (max-width: 800px) {
+    /* Garante que o container pai use Flexbox para ordenar os itens */
+    header div[style*="display: flex"] {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    /* MOVE O BOTÃO PARA A ESQUERDA */
+    #menu-toggle-container {
+        display: flex !important;
+        order: -1 !important; /* Isso joga o botão para o início da linha (esquerda) */
+        margin-right: 15px !important;
+        margin-left: 0 !important;
+    }
+	
+	/* LOGO FICA NO MEIO/DEPOIS DO BOTÃO */
+    .logo-container, .separator {
+        order: 0 !important;
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .menuhorizontal2 {
+        display: none !important;
+        flex-direction: column !important;
+        width: 150px !important;
+        transition: all 0.4s ease-in-out;        
+        height: auto !important;
+        align-items: flex-start !important;
+        margin-top: 15px !important;
+        border-right: 1px solid rgba(255, 0, 0, 0.3);
+    }
+    
+    .menu-aberto {
+        display: flex !important;
+        animation: slideDown 0.4s ease-out;
+		flex-direction: column !important;
+		
+    }
+	
+	.menuhorizontal2.menu-aberto {
+        display: flex !important;
+		animation: slideDown 0.4s ease-out;
+		flex-direction: column !important;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .menuhorizontal2 li {
+        width: 100% !important;
+        position: static !important;
+        text-align: left !important;
+    }
+
+    .menuhorizontal2 > li > span, 
+    .menuhorizontal2 > li > a {
+        padding: 10px 5px !important;
+        font-size: 16px !important;
+    }
+
+    .menuhorizontal2 li ul {
+        position: absolute !important;
+        top: 0px !important;
+        left: 307px !important;
+        width: calc(100% - 150px) !important;
+        height: 96% !important;
+        background-color: rgba(0, 0, 0, 0.95) !important;
+        border-top: none !important;
+        border-left: 2px solid var(--cor-vermelho) !important;
+        display: none;
+        z-index: 2000;
+    }
+
+    .menuhorizontal2 li:hover ul {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #user-area {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        margin-top: 15px !important;
+        border-top: 1px solid rgba(255, 0, 0, 0.3);
+        padding-top: 10px !important;
+    }
+
+    #user-info-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 10px;
+    }
+
+    #user-info-container a:first-child {
+        display: flex !important;
+        align-items: center;
+        flex-shrink: 0; 
+    }
+
+    #user-info-container a[href*="conf.php"] {
+        margin-left: auto;
+        padding: 8px 12px !important;
+        font-size: 10px !important;
+        white-space: nowrap;
+    }
+}
+
+/* No Desktop */
+@media (min-width: 801px) {
+    .menuhorizontal2 {
+        flex: 1 !important; 
+        justify-content: flex-start !important; /* Alinha o menu logo após a logo */
+        margin: 0px 10px !important; /* Reduzi a margem lateral para aproximar da logo */
+    }
+
+    .menuhorizontal2 li {
+        width: auto !important; /* Itens ocupam apenas o espaço necessário */
+        margin-top: 0px;
+        position: relative !important; /* Corrigido de flex para relative */
+    }
+    
+    #menu-toggle-container {
+        display: none !important;
+    }
+	
+    #user-area {
+        min-width: 200px !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+        flex-shrink: 0 !important;
+    }
+
+    #user-area > div {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+}

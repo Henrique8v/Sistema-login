@@ -1,0 +1,116 @@
+        :root {
+            --primary-green: #00ff41;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.8);
+            --border-color: #333;
+            --hover-glow: rgba(0, 255, 65, 0.3);
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            color: white;
+            font-family: 'Trebuchet MS', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--hover-glow);
+        }
+
+        .grid-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .link-card {
+            display: block;
+            text-decoration: none;
+            color: #ccc;
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            will-change: transform; /* Performance focus */
+            touch-action: pan-y;
+        }
+
+        .link-card:hover {
+            color: white;
+            border-color: var(--primary-green);
+            background: rgba(0, 255, 65, 0.05);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 20px var(--hover-glow);
+        }
+
+        .link-card span {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary-green);
+        }
+
+        .link-card small {
+            display: block;
+            font-size: 11px;
+            opacity: 0.6;
+            word-break: break-all;
+        }
+
+        /* Botão Destaque para Perfil */
+        .perfil-btn {
+            grid-column: 1 / -1;
+            background: linear-gradient(45deg, #004d00, #00ff41);
+            color: black !important;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .perfil-btn:hover {
+            background: linear-gradient(45deg, #00ff41, #adff2f);
+            box-shadow: 0 0 30px var(--primary-green);
+        }
+
+        .perfil-btn span {
+            color: black !important;
+        }
+
+        /* Efeito de Scanline Estilo Matrix */
+        .container::before {
+            content: " ";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--primary-green);
+            opacity: 0.1;
+            animation: scanline 6s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }

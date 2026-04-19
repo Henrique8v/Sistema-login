@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Arquitetura Híbrida | Brotherhood</title>
+    <style>
+        /* ESTILO EXCLUSIVO ACCESS PANEL [cite: 2026-02-24] */
+        :root {
+            --bg: #020202;
+            --green: #00ff41;
+            --cyan: #00f3ff;
+            --gray: #b0b0b0;
+            --card: #0d0d0d;
+            --blue-border: #4d70db;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--gray);
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header-main {
+            border-top: 2px solid #9ba2ba;
+            border-bottom: 2px solid var(--green);
+            border-left: 2px solid var(--blue-border);
+            border-right: 2px solid var(--blue-border);
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(90deg, #000 0%, rgba(0, 243, 255, 0.05) 50%, #000 100%);
+            margin-bottom: 50px;
+        }
+
+        h1 { color: #fff; letter-spacing: 4px; text-transform: uppercase; margin: 0; font-size: 1.6rem; }
+        h2 { color: var(--cyan); border-bottom: 1px solid #222; padding-bottom: 10px; margin-top: 40px; text-transform: uppercase; font-size: 1.2rem; }
+        h3 { color: var(--green); font-size: 1rem; margin-top: 25px; }
+
+        .article-card {
+            background: var(--card);
+            border: 1px solid #1a1a1a;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        code { font-family: 'Consolas', monospace; background: #000; color: var(--cyan); padding: 2px 6px; }
+        
+        pre {
+            background: #000;
+            padding: 20px;
+            border-left: 3px solid var(--green);
+            color: #dcdcaa;
+            font-family: 'Consolas', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .important-note {
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 4px solid var(--green);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .syntax-tip { color: var(--cyan); font-weight: bold; }
+        
+        ul { list-style: none; padding: 0; }
+        ul li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        ul li::before { content: "»"; position: absolute; left: 0; color: var(--green); }
+
+        .tutorial-box {
+            border: 1px solid var(--blue-border);
+            padding: 25px;
+            background: rgba(77, 112, 219, 0.03);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-main">
+        <h1>Sinergia de Motores: Python & C++</h1>
+        <p style="color: var(--cyan); font-size: 0.8rem; margin-top: 10px; letter-spacing: 2px;">PROTOCOLO DE INTEGRAÇÃO DO SISTEMA-LOGIN</p>
+    </header>
+
+    <div class="article-card">
+        <h2>1. Diferença Fundamental de Execução</h2>
+        <p>No ecossistema Brotherhood, o C++ e o Python desempenham papéis distintos com base em como o Windows processa suas instruções.</p>
+        
+        <h3>Python: O Motor Interpretado</h3>
+        <p>Precisa de um "motor" instalado para ler o código toda vez que ele roda. Para o XAMPP, usamos o Python instalado diretamente no sistema, permitindo que o PHP dispare scripts <code>.py</code> sem depender de IDEs abertas.</p>
+
+        <h3>C++: O Binário Compilado</h3>
+        <p>Diferente do Python, o C++ gera um arquivo <code>.exe</code> independente. Uma vez compilado (via Code::Blocks ou o script <code>executar_cpp.py</code>), ele roda nativamente no Windows sem necessidade de compiladores no servidor de destino. O custo é um binário ligeiramente maior devido à importação de bibliotecas para dentro do executável.</p>
+    </div>
+
+    
+
+    <div class="article-card">
+        <h2>2. Gestão de Ambiente e IDEs</h2>
+        <div class="important-note">
+            <strong>Regra de Ouro:</strong> Não desinstale o PyCharm ou o Code::Blocks. As IDEs são seus painéis de controle para debug e escrita em "bolhas" controladas (ambientes virtuais). O Python Raiz no sistema é o motor que serve ao XAMPP.
+        </div>
+        <ul>
+            <li><strong>Python Raiz:</strong> Motor global acessível pelo PHP.</li>
+            <li><strong>PyCharm:</strong> Ferramenta de edição e processamento pesado (GPU/IA).</li>
+        </ul>
+    </div>
+
+    <div class="article-card tutorial-box">
+        <h2>3. Tutorial: Configurando o Path no Windows</h2>
+        <p>Para que o comando <code>python</code> funcione em qualquer terminal ou via PHP, o executável deve estar nas Variáveis de Ambiente.</p>
+        <ol style="padding-left: 20px;">
+            <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e dê Enter.</li>
+            <li>Vá na aba <strong>Avançado</strong> e clique em <strong>Variáveis de Ambiente</strong>.</li>
+            <li>Em "Variáveis do Sistema", localize <strong>Path</strong> e clique em Editar.</li>
+            <li>Clique em <strong>Novo</strong> e adicione o caminho da sua instalação: <code>C:\Users\lorde\AppData\Local\Programs\Python\Python314\</code></li>
+            <li>Adicione outro para os scripts: <code>C:\Users\lorde\AppData\Local\Programs\Python\Python314\Scripts\</code></li>
+            <li>Mova esses dois caminhos para o topo da lista para evitar conflitos com a Microsoft Store.</li>
+        </ol>
+
+        <h3>Resolvendo o Conflito Microsoft Store (Aliases)</h3>
+        <p>Se o comando abrir a loja, vá em: <em>Configurações > Aplicativos > Aliases de execução do aplicativo</em> e desative o <strong>Instalador do Aplicativo</strong> para <code>python.exe</code> e <code>python3.exe</code>.</p>
+    </div>
+
+    <div class="article-card">
+        <h2>4. Implementação no PHP (Maestro)</h2>
+        <p>Para garantir que o PHP não se perca na hierarquia de permissões ou diretórios, use a sintaxe absoluta do Windows para o executável.</p>
+        <pre>
+// No seu PHP (Sistema-login/my_dashboard.php)
+$python = "C:\Users\lorde\AppData\Local\Programs\Python\Python314\python.exe";
+$script = "C:/xampp/htdocs/Sistema-login/scripts/python/limpeza_arquivos.py";
+
+// O shell_exec envia para o CMD com tratamento de erros (2>&1)
+$resultado = shell_exec("$python \"$script\" 2>&1");
+        </pre>
+        <p class="syntax-tip">Dica de Barra:</p>
+        <p>Use <code>DIRECTORY_SEPARATOR</code> para compatibilidade total, embora o CMD moderno aceite <code>/</code> para scripts, o executável do Windows exige <code>\</code>.</p>
+    </div>
+
+    <div class="article-card">
+        <h2>5. Tratamento de Saída UTF-8</h2>
+        <p>Para que o PHP receba corretamente caracteres especiais (acentos) dos seus scripts Python, force o wrapper de saída:</p>
+        <pre>
+import sys
+import io
+
+# Força a saída do console a usar UTF-8
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+        </pre>
+    </div>
+
+    <div style="text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; margin-top: 50px;">
+        ESTRUTURA HÍBRIDA KORVADO | 2026 SOVEREIGNTY
+    </div>
+</div>
+
+</body>
+</html>

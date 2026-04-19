@@ -1,0 +1,13 @@
+Cmd:
+
+#bash____________________________________________________________
+
+ngrok http 80
+ngrok http 8080
+_______________________________________________________________
+
+Acesso Público:
+
+Atenção ao Caminho do Projeto: se o seu projeto está dentro da pasta C:/xampp/htdocs/Sistema-login, o link que você vai mandar para as pessoas (ou abrir no celular) será: https://sua-url-do-ngrok.ngrok-free.app/Sistema-login/
+
+Exemplo do projeto: https://breathless-marketta-trustworthily.ngrok-free.dev/Sistema-login/

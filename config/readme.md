@@ -1,0 +1,1 @@
+config.php é para configurar a conexão das paginas com PDO e BD (Banco de Dados) de modo geral, sem necessitar modificar cada arquivo individualmente. Então se mover o diretorio, se alterar a Tabela e colunas, dica mais facil configurar os IDs, Nomes e Processos.
